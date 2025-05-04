@@ -3,9 +3,7 @@ import json
 import requests
 
 # === CONFIGURATION ===
-GROQ_API_KEY = os.getenv('GROQ_API_KEY')  # Get API key from environment variable
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY environment variable is not set")
+
 MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 DATA_FOLDER = "data"
 OUTPUT_FOLDER = "podcasts"
@@ -28,6 +26,9 @@ Respond only with the podcast script.
 
 # === CALL GROQ LLaMA API ===
 def call_llama(json_data):
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY')  # Get API key from environment variable
+    if not GROQ_API_KEY:
+        raise ValueError("GROQ_API_KEY environment variable is not set")
     headers = {
     "Authorization": f"Bearer {GROQ_API_KEY}",
     "Content-Type": "application/json"

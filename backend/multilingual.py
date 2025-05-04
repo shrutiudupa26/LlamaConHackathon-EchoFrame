@@ -4,9 +4,7 @@ import os
 
 
 # === CONFIGURATION ===
-GROQ_API_KEY = os.getenv('GROQ_API_KEY')  # Get API key from environment variable
-if not GROQ_API_KEY:
-    raise ValueError("GROQ_API_KEY environment variable is not set")
+
 MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
 
 
@@ -15,6 +13,9 @@ def test_translations():
     """
     Test translation of a single English text into multiple languages.
     """
+    GROQ_API_KEY = os.getenv('GROQ_API_KEY')  # Get API key from environment variable
+    if not GROQ_API_KEY:
+        raise ValueError("GROQ_API_KEY environment variable is not set")
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {GROQ_API_KEY}"

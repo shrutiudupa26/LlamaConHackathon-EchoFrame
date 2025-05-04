@@ -1,33 +1,39 @@
 [Intro music fades out]
 
-Host: "Hey everyone, welcome back to Tech Pentagon! Today, we're going to build a weather station using Raspberry Pi Pico and the DHT11 temperature and humidity sensor. It's going to be a fun project, so let's get started!"
+Host: "Hey everyone, welcome back to Tech Pentagon! Today, we're going to build a weather station using Raspberry Pi Pico and the DHT11 temperature and humidity sensor. I'll guide you through the process, and by the end of this episode, you'll have a working weather station. So, let's get started!"
 
-[Sound effect: A quick beep]
+[Sound of electronics equipment]
 
-Host: "To make this project, we'll need a few components: an LCD display, some jumper wires, the DHT11 temperature and humidity sensor, a Raspberry Pi Pico, and a breadboard. Let's take a look at all of them."
+Host: "To make this project, we'll need a few components: an LCD display, some jumper wires, the DHT11 temperature and humidity sensor, Raspberry Pi Pico, and a breadboard. Let's take a look at the components."
 
-[Sound effect: A gentle whoosh]
+[Visual description: components laid out on a striped surface]
 
-Host: "Now, let's see how to connect all these components. According to our circuit diagram, I've already built the connections. The Raspberry Pi Pico is connected to the DHT11 sensor and the LCD display via the breadboard and jumper wires."
+Host: "Now, let's see how to connect them. Here's the circuit diagram. We'll use Fritzing to visualize the connections."
 
-[Sound effect: A quick zap]
+[Sound of software interface]
 
-Host: "Now, let's move on to the coding part. We'll need four files: dht.py, lcd_api.py, pico_i2c_lcd.py, and main.py. We'll be working on the main.py file. Here, we declare the I2C pins, the LCD display, and the DHT11 sensor."
+Host: "According to our circuit diagram, I've already built the connections. Now, let's move on to the coding part. We'll need four files: dht.py, lcd_api.py, pico_i2c_lcd.py, and main.py. We'll work on the main.py file."
 
-[Sound effect: A gentle click]
+[Sound of typing on a keyboard]
 
-Host: "We use the `time.sleep` function, clear the LCD, and read the temperature and humidity values from the sensor. I've explained this syntax in my previous video, so you can check that out if you're unsure."
+Host: "In the main.py file, I declared the I2C pins and the LCD display. Then, I defined the temperature 'T' and humidity 'H' variables using the DHT11 sensor. I also added some delay and cleared the LCD screen."
 
-[Sound effect: A quick beep]
+[Sound of coding]
 
-Host: "Now, let's run the code and upload it to the Pico board. And... it's working! The temperature is showing as 33.2 degrees Celsius, and the humidity is 54.0 percent."
+Host: "Now, let's run the code and upload it to the Pico board."
 
-[Sound effect: A gentle whoosh]
+[Sound of uploading code]
 
-Host: "But is it accurate? Let's check. According to Google, today's temperature in Howrah, West Bengal is 34 degrees Celsius. Our reading is 33.1 degrees Celsius, which is a difference of just 0.9 degrees. Not bad, right?"
+Host: "After uploading the code, you can see that my temperature is currently showing 33.2 degrees Celsius, and humidity is 54.0 percent. Let's check if it's accurate."
 
-[Sound effect: A gentle click]
+[Sound of smartphone interface]
 
-Host: "So, there you have it! You can make a simple weather station using Raspberry Pi Pico and the DHT11 sensor. If you liked this video, please like, share, and subscribe for more upcoming videos. Thanks for watching, and I'll see you in the next one!"
+Host: "I'll search for today's temperature in my location. According to Google, it's 34 degrees Celsius. Let's compare it with our reading: 33.1 degrees Celsius. Not bad, only a 0.9-degree difference!"
 
-[Outro music fades in]
+[Sound of satisfied tone]
+
+Host: "So, there you have it! You can make a weather station using Raspberry Pi Pico and DHT11 temperature and humidity sensor. If you liked this video, please like, share, and subscribe for more upcoming videos. Thanks for watching!"
+
+[Outro music starts playing]
+
+Host: "Thanks again, and I'll see you in the next episode!"
