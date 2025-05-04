@@ -2,21 +2,6 @@ import requests
 import json
 import os
 
-# === CONFIGURATION ===
-TAVUS_API_KEY = os.getenv('TAVUS_API_KEY')  # Get API key from environment variable
-if not TAVUS_API_KEY:
-    raise ValueError("TAVUS_API_KEY environment variable is not set")
-
-TAVUS_API_URL = os.getenv('TAVUS_API_URL')  # Get Url from environment variable
-if not TAVUS_API_URL:
-    raise ValueError("TAVUS_API_KEY environment variable is not set")
-PERSONA_ID = os.getenv('PERSONA_ID')  # Get PersonaID from environment variable
-if not PERSONA_ID:
-    raise ValueError("PERSONA_ID environment variable is not set")
-REPLICA_ID = os.getenv('REPLICA_ID')  # Get ReplicaID from environment variable
-if not REPLICA_ID:
-    raise ValueError("REPLICA_ID environment variable is not set")
-
 def create_tavus_conversation(
     conversation_name: str = 'Sample Conversation',
     custom_greeting: str = 'Hello! Welcome to our conversation.',
@@ -32,6 +17,21 @@ def create_tavus_conversation(
     recording_s3_bucket_region: str = "",
     aws_assume_role_arn: str = ""
 ):
+    # === CONFIGURATION ===
+    TAVUS_API_KEY = os.getenv('TAVUS_API_KEY')  # Get API key from environment variable
+    if not TAVUS_API_KEY:
+     raise ValueError("TAVUS_API_KEY environment variable is not set")
+
+    TAVUS_API_URL = os.getenv('TAVUS_API_URL')  # Get Url from environment variable
+    if not TAVUS_API_URL:
+        raise ValueError("TAVUS_API_KEY environment variable is not set")
+    PERSONA_ID = os.getenv('PERSONA_ID')  # Get PersonaID from environment variable
+    if not PERSONA_ID:
+        raise ValueError("PERSONA_ID environment variable is not set")
+    REPLICA_ID = os.getenv('REPLICA_ID')  # Get ReplicaID from environment variable
+    if not REPLICA_ID:
+        raise ValueError("REPLICA_ID environment variable is not set")
+    
     """
     Creates a conversation on the Tavus platform and returns the response data.
 
@@ -47,20 +47,20 @@ def create_tavus_conversation(
     payload = {
         'replica_id': REPLICA_ID,
         'persona_id': PERSONA_ID,
-        'conversation_name': conversation_name,
-        'conversational_context': conversational_context,
-        'custom_greeting': custom_greeting,
+        'conversation_name':'Sample Conversation',
+        'custom_greeting':'Hello! Welcome to our conversation.',
+        'conversational_context':'This is a sample context for the conversation.',
         'properties': {
-            "max_call_duration": max_call_duration,
-            "participant_left_timeout": participant_left_timeout,
-            "participant_absent_timeout": participant_absent_timeout,
-            "enable_recording": enable_recording,
-            "enable_closed_captions": enable_closed_captions,
-            "apply_greenscreen": apply_greenscreen,
-            "language": language,
-            "recording_s3_bucket_name": recording_s3_bucket_name,
-            "recording_s3_bucket_region": recording_s3_bucket_region,
-            "aws_assume_role_arn": aws_assume_role_arn
+            'max_call_duration':3600,
+            'participant_left_timeout':60,
+            'participant_absent_timeout':300,
+            'enable_recording':False,
+            'enable_closed_captions':True,
+            'apply_greenscreen':True,
+            'language':"english",
+            'recording_s3_bucket_name':"",
+            'recording_s3_bucket_region':"",
+            'aws_assume_role_arn':""
         }
     }
 

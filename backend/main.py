@@ -7,6 +7,7 @@ from fastapi.responses import JSONResponse, FileResponse
 import uuid
 from generate_podcast import process_and_merge_podcasts
 from multilingual import test_translations
+from create_tavus_conversations import create_tavus_conversation
 import requests
 from pydub import AudioSegment
 from groq import Groq
@@ -99,12 +100,12 @@ def start_conversation():
         "replica_id": "r6ae5b6efc9d",
         "persona_id": "p1d6a2085bce",
         "callback_url": "https://yourwebsite.com/webhook",
-        "conversation_name": "A Meeting with Hassaan",
+        "conversation_name": "A Conversation with EchoFrame",
         "conversational_context": (
-            "You are about to talk to Hassaan, one of the cofounders of Tavus. "
+            "You are about to talk to EchoFrame, one of the cofounders of Tavus. "
             "He loves to talk about AI, startups, and racing cars."
         ),
-        "custom_greeting": "Hey there Hassaan, long time no see!",
+        "custom_greeting": "Hey there EchoFrame, long time no see!",
         "properties": {
             "max_call_duration": 3600,
             "participant_left_timeout": 60,
@@ -233,3 +234,7 @@ def generate_audio_groq(filename: str = Form(...)):
 
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+@app.post("/create_tavus_conversation")
+def run_translation():
+    result = create_tavus_conversation()
+    return JSONResponse(content=result)
