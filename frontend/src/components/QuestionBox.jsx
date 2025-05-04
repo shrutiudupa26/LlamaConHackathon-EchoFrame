@@ -6,7 +6,8 @@ export default function QuestionBox({ onAnswer }) {
 
   const handleAsk = async () => {
     try {
-      const res = await axios.post('http://localhost:3001/api/ask', { question });
+      //const res = await axios.post('http://localhost:3001/api/ask', { question }); NODEJS
+      const res = await axios.post('http://localhost:8000/ask', { question });
       onAnswer(res.data.answer);
     } catch (err) {
       alert('Query failed');

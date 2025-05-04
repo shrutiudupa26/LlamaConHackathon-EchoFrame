@@ -4,7 +4,6 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import multer from 'multer';
-import pdfParse from 'pdf-parse';
 
 dotenv.config();
 
