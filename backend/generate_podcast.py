@@ -35,9 +35,11 @@ def call_llama(json_data):
     }
 
     system_prompt = (
-        "You are a scriptwriter for podcasts. Your job is to take structured data and generate a spoken-style narrative, "
-        "suitable for a podcast episode, under 10000 characters. Use natural, engaging language."
-    )
+    "You are a scriptwriter for podcasts. Your job is to take structured data and generate a spoken-style narrative "
+    "that is suitable for a podcast episode. The output must be engaging and under 10,000 characters in total, including all text. "
+    "Be concise, summarize key themes, and avoid repeating the full transcript. Focus on narrative clarity."
+)
+
 
     user_prompt = format_podcast_prompt(json_data)
 
