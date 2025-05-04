@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function ResponseViewer({ response }) {
+  const [language, setLanguage] = useState('en');
+
+  const handleLanguageChange = (e) => {
+    setLanguage(e.target.value);
+    // Optionally, trigger translation logic here
+    // e.g., translateResponse(response, e.target.value)
+  };
+
   return (
     <div className="response-viewer">
+      <div className="response-header">
+        <label htmlFor="language-select">Language: </label>
+        <select
+          id="language-select"
+          value={language}
+          onChange={handleLanguageChange}
+          className="language-dropdown"
+        >
+          <option value="en">English</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="hi">Hindi</option>
+          <option value="zh">Chinese</option>
+          {/* Add more languages as needed */}
+        </select>
+      </div>
+
       {response ? (
         <pre className="response-content">{response}</pre>
       ) : (

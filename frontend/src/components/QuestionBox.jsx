@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-export default function QuestionBox({ onAnswer }) {
+export default function QuestionBox({ onAnswer, response }) {
   const [question, setQuestion] = useState('');
 
   const handleAsk = async () => {
     try {
-      //const res = await axios.post('http://localhost:3001/api/ask', { question }); NODEJS
       const res = await axios.post('http://localhost:8000/ask', { question });
       onAnswer(res.data.response);
     } catch (err) {
@@ -34,6 +33,7 @@ export default function QuestionBox({ onAnswer }) {
         </svg>
         Ask Question
       </button>
+      
     </div>
   );
 }
