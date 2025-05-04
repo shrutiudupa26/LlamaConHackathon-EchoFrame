@@ -1,0 +1,6 @@
+# Web Framework
+fastapi
+uvicorn
+
+# Utilities
+python-dotenv==1.0.0
