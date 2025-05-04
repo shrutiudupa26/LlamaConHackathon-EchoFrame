@@ -8,7 +8,7 @@ export default function QuestionBox({ onAnswer }) {
     try {
       //const res = await axios.post('http://localhost:3001/api/ask', { question }); NODEJS
       const res = await axios.post('http://localhost:8000/ask', { question });
-      onAnswer(res.data.answer);
+      onAnswer(res.data.response);
     } catch (err) {
       alert('Query failed');
       console.error(err);

@@ -11,7 +11,7 @@ load_dotenv()
 # Set API key and base URL
 # Set your Groq API key
 client = OpenAI(
-    api_key=os.getenv("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"),  # 🔐 This is where your key is used
+    api_key=os.getenv('GROQ_API_KEY'),  # 🔐 This is where your key is used
     base_url="https://api.groq.com/openai/v1"  # 🔁 For Groq compatibility
 )
 
@@ -25,7 +25,7 @@ app.add_middleware(
     allow_headers=["*"],
 
 )
-TAVUS_API_KEY = "1052c21a83f64a099888575d43b503f7"
+tavus_key= os.getenv("TAVUS_API_KEY")
 TAVUS_API_URL = "https://tavusapi.com/v2/conversations"
 
 
@@ -60,7 +60,7 @@ def start_conversation():
 
     headers = {
         "Content-Type": "application/json",
-        "x-api-key": TAVUS_API_KEY
+        "x-api-key": tavus_key
     }
 
     response = requests.post(TAVUS_API_URL, json=payload, headers=headers)
