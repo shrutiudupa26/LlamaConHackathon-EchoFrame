@@ -46,6 +46,10 @@ class TranslationRequest(BaseModel):
     text: str
     languages: list[str]
 
+class ConversationRequest(BaseModel):
+    person: str
+    language: str
+
 # ====== ROUTES ======
 
 @app.get("/")
@@ -95,17 +99,17 @@ def translate(req: TranslationRequest):
     return {"translations": translations}
 
 @app.post("/start-conversation")
-def start_conversation():
+def start_conversation(request: ConversationRequest):
     payload = {
         "replica_id": "r6ae5b6efc9d",
         "persona_id": "p1d6a2085bce",
         "callback_url": "https://yourwebsite.com/webhook",
-        "conversation_name": "A Conversation with EchoFrame",
+        "conversation_name": "A Conversation with " + request.person,
         "conversational_context": (
-            "You are about to talk to EchoFrame, one of the cofounders of Tavus. "
+            "You are about to talk to" +  request.person + ", one of the cofounders of Tavus. "
             "He loves to talk about AI, startups, and racing cars."
         ),
-        "custom_greeting": "Hey there EchoFrame, long time no see!",
+        "custom_greeting": "Hey there " + request.person + ", long time no see!",
         "properties": {
             "max_call_duration": 3600,
             "participant_left_timeout": 60,
@@ -113,7 +117,7 @@ def start_conversation():
             "enable_recording": False,
             "enable_closed_captions": True,
             "apply_greenscreen": True,
-            "language": "english",
+            "language": request.language
         }
     }
 
