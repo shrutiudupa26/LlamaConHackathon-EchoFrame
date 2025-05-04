@@ -66,3 +66,18 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+.play-button {
+  margin-left: 10px;
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.response-content {
+  max-height: 300px; /* Adjust based on your needs */
+  overflow-y: auto;  /* Enables vertical scrolling */
+  white-space: pre-wrap; /* Wraps the text in case it's too long */
+  word-wrap: break-word; /* Breaks long words for better readability */
+}

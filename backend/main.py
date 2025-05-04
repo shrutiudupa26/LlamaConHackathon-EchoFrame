@@ -1,5 +1,11 @@
 import os
-from fastapi import FastAPI, Request, Form
+import io
+import sounddevice as sd
+import soundfile as sf
+from pathlib import Path
+from fastapi import FastAPI, Request, Form, Response
+from starlette.responses import PlainTextResponse
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
@@ -11,6 +17,7 @@ from create_tavus_conversations import create_tavus_conversation
 import requests
 from pydub import AudioSegment
 from groq import Groq
+
 
 
 # Load environment variables
@@ -242,3 +249,39 @@ def generate_audio_groq(filename: str = Form(...)):
 def run_translation():
     result = create_tavus_conversation()
     return JSONResponse(content=result)
+
+@app.post("/generate-speech")
+def generate_speech():
+    # Initialize the Groq client
+    client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
+    # Read the podcast text
+    with open('podcasts/full_podcast.txt', 'r') as file:
+        podcast_text = file.read()
+    try:
+        # Generate speech with Groq API
+        response = client.audio.speech.create(
+            model="playai-tts",
+            voice="Fritz-PlayAI",
+            input=podcast_text,
+            response_format="wav"
+        )
+
+        # Load binary audio data into memory
+        audio_bytes = io.BytesIO(response.read())
+
+        # Return as audio/wav stream
+        return StreamingResponse(audio_bytes, media_type="audio/wav", headers={
+            "Content-Disposition": "inline; filename=speech.wav"
+        })
+
+    except Exception as e:
+        return Response(content=f"Error generating speech: {str(e)}", status_code=500)
+    
+@app.get("/podcast-text", response_class=PlainTextResponse)
+async def get_podcast_text():
+    file_path = Path("podcasts/full_podcast.txt")
+    if not file_path.exists():
+        return PlainTextResponse("File not found", status_code=404)
+    
+    with open(file_path, "r", encoding="utf-8") as f:
+        return f.read()

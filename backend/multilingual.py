@@ -9,7 +9,7 @@ MODEL = "meta-llama/llama-4-maverick-17b-128e-instruct"
 
 
 
-def test_translations():
+def test_translations(target_language):
     """
     Test translation of a single English text into multiple languages.
     """
@@ -24,42 +24,36 @@ def test_translations():
     # English text to translate
     english_text = "The rapid advancement of artificial intelligence is revolutionizing various industries, from healthcare to finance, by enabling more efficient data analysis and decision-making processes."
 
-    # Target languages
-    target_languages = [
-        "Latin",
-        "Hindi",
-        "German",
-        "Italian"
-    ]
+
 
     print("Original English text:")
     print(english_text)
     print("\nTranslations:")
 
-    for language in target_languages:
-        translation_prompt = f"Translate the following English text to {language}:\n{english_text}"
 
-        data = {
-            "model": MODEL,
-            "messages": [
-                {"role": "user", "content": translation_prompt}
-            ]
-        }
+    translation_prompt = f"Translate the following English text to {target_language}:\n{english_text}"
 
-        try:
-            print(f"\n{language}:")
-            response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
+    data = {
+        "model": MODEL,
+        "messages": [
+            {"role": "user", "content": translation_prompt}
+        ]
+    }
 
-            if response.status_code == 200:
-                response_data = response.json()
-                content = response_data['choices'][0]['message']['content']
-                print(content)
-            else:
-                print(f"Error: {response.status_code}")
-                print("Response:", response.text)
+    try:
 
-        except Exception as e:
-            print(f"Error occurred: {str(e)}")
+        response = requests.post("https://api.groq.com/openai/v1/chat/completions", headers=headers, json=data)
+
+        if response.status_code == 200:
+            response_data = response.json()
+            content = response_data['choices'][0]['message']['content']
+            return content
+        else:
+            print(f"Error: {response.status_code}")
+            print("Response:", response.text)
+
+    except Exception as e:
+        print(f"Error occurred: {str(e)}")
 
 if __name__ == "__main__":
     print("Testing translations of English text to multiple languages...")

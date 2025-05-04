@@ -1,12 +1,48 @@
 import React, { useState } from 'react';
 
-export default function ResponseViewer({ response }) {
+export default function ResponseViewer({ response: initialResponse }) {
   const [language, setLanguage] = useState('en');
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState(initialResponse);
 
-  const handleLanguageChange = (e) => {
-    setLanguage(e.target.value);
-    // Optionally, trigger translation logic here
-    // e.g., translateResponse(response, e.target.value)
+  const handleLanguageChange = async (e) => {
+    const selectedLang = e.target.value;
+    setLanguage(selectedLang);
+    
+    try {
+      const res = await fetch(`http://localhost:8000/podcast-text?lang=${selectedLang}`);
+      if (!res.ok) {
+        throw new Error('Failed to fetch podcast text');
+      }
+      const text = await res.text();
+      setResponse(text);
+    } catch (error) {
+      console.error('Error fetching podcast text:', error);
+      setResponse('Failed to load podcast text.');
+    }
+  };
+
+  const handlePlayClick = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('http://localhost:8000/generate_speech', {
+        method: 'POST',
+      });
+
+      if (!res.ok) {
+        throw new Error('Failed to trigger speech generation');
+      }
+
+      const blob = await res.blob();
+      const audioUrl = URL.createObjectURL(blob);
+      const audio = new Audio(audioUrl);
+      audio.play();
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to play audio');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -24,8 +60,11 @@ export default function ResponseViewer({ response }) {
           <option value="fr">French</option>
           <option value="hi">Hindi</option>
           <option value="zh">Chinese</option>
-          {/* Add more languages as needed */}
         </select>
+
+        <button onClick={handlePlayClick} disabled={loading} className="play-button">
+          {loading ? 'Playing...' : 'Play'}
+        </button>
       </div>
 
       {response ? (
