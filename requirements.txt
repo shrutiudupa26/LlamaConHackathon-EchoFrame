@@ -4,3 +4,10 @@ uvicorn
 
 # Utilities
 python-dotenv==1.0.0
+groq
+sounddevice
+soundfile
+pydub
+pydantic
+python-multipart
+requests
