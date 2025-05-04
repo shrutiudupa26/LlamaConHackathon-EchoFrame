@@ -1,0 +1,65 @@
+Welcome to this tutorial on using the DHT11 temperature and humidity sensor with Raspberry Pi. 
+
+The DHT11 is a simple digital sensor that can measure both temperature and humidity. 
+
+It's a great choice for beginners because it's easy to use and inexpensive. 
+
+The sensor works by detecting changes in resistance to measure temperature and humidity. 
+
+It provides digital output, making it easy to interface with microcontrollers like Raspberry Pi.
+
+The DHT11 operates on 3 to 5 volts and has a low current requirement. 
+
+It can measure humidity between 20 to 80% with 5% accuracy and temperature from 0 to 50 degrees Celsius with 2 degrees accuracy.
+
+To use the DHT11 with Raspberry Pi, you need to install a library. 
+
+The library we'll use is from Adafruit, a well-known brand in the DIY electronics community.
+
+First, we need to download the library from GitHub. 
+
+Then, we install the required dependencies and build the library.
+
+The library installation involves several commands. 
+
+The first command downloads the library. 
+
+The second command changes the directory. 
+
+The third command installs the dependencies. 
+
+The fourth command builds and installs the library.
+
+After installing the library, we can write a simple Python program to read data from the DHT11. 
+
+The program includes a declaration of the sensor and the pin it's connected to. 
+
+It then reads the temperature and humidity using the library's read_retry function.
+
+The program checks if the readings are valid and prints them. 
+
+If the readings are not valid, it prints an error message.
+
+To get continuous readings, we can modify the program to run in an infinite loop. 
+
+We add a delay of one second between readings.
+
+The program now continuously prints temperature and humidity readings.
+
+Let's test the sensor with a heat source. 
+
+We'll use a soldering iron and a hot air gun.
+
+The temperature readings increase when we bring the heat source close to the sensor. 
+
+The humidity readings decrease.
+
+The DHT11 sensor provides accurate readings and is easy to use with Raspberry Pi.
+
+Make sure to follow proper safety precautions when working with heat sources and electronics.
+
+That's it for this tutorial. 
+
+I hope you found it helpful. 
+
+Thanks for watching.

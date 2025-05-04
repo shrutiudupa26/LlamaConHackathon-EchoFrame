@@ -1,0 +1,1162 @@
+{
+    "URL": "https://www.youtube.com/watch?v=WUoCCQmxxEk",
+    "transcription": [
+      {
+        "start_time": "00:00:00",
+        "end_time": "00:00:00",
+        "text": "Hello."
+      },
+      {
+        "start_time": "00:00:01",
+        "end_time": "00:00:06",
+        "text": "In this video, let's see an actual sensor in action with Raspberry Pi."
+      },
+      {
+        "start_time": "00:00:07",
+        "end_time": "00:00:15",
+        "text": "For this particular video, we have chosen this sensor, which is called as DHT11 to interface with Raspberry Pi."
+      },
+      {
+        "start_time": "00:00:15",
+        "end_time": "00:00:18",
+        "text": "There are several reasons for choosing DHT 11."
+      },
+      {
+        "start_time": "00:00:18",
+        "end_time": "00:00:25",
+        "text": "The very first reason is it's very simple digital sensor and therefore it can directly get interfaced with Raspberry Pi."
+      },
+      {
+        "start_time": "00:00:26",
+        "end_time": "00:00:38",
+        "text": "The second reason for choosing this one is it gives us two values, those are humidity as well as temperature, so it can sense the atmospheric humidity as well as temperature and it can give us those two values."
+      },
+      {
+        "start_time": "00:00:39",
+        "end_time": "00:00:42",
+        "text": "The third important reason for choosing DHT 11 is its price."
+      },
+      {
+        "start_time": "00:00:43",
+        "end_time": "00:00:48",
+        "text": "Almost anyone would be able to afford it because DHT 11 comes very cheaper."
+      },
+      {
+        "start_time": "00:00:48",
+        "end_time": "00:00:55",
+        "text": "Now let's see how we can interface DHT 11 with Raspberry Pi and how we can write down a Python program for the same."
+      },
+      {
+        "start_time": "00:00:56",
+        "end_time": "00:01:00",
+        "text": "A little bit about DHT 11, as said, it's a digital temperature and humidity sensor."
+      },
+      {
+        "start_time": "00:01:01",
+        "end_time": "00:01:11",
+        "text": "This contains a negative temperature coefficient thermister for measuring the temperature value, and it consists of a resistive type humidity sensor."
+      },
+      {
+        "start_time": "00:01:12",
+        "end_time": "00:01:21",
+        "text": "So both the temperature and humidity are sensed by changes in the resistance itself by the elements which are present inside the sensor."
+      },
+      {
+        "start_time": "00:01:21",
+        "end_time": "00:01:38",
+        "text": "But the sensor also consists of all the required circuitry which is required to process these values coming from the sensor, and therefore what we get is a complete digital data onto a single wire."
+      },
+      {
+        "start_time": "00:01:38",
+        "end_time": "00:01:54",
+        "text": "It requires only single wire or one wire for data signal and therefore it is easier, it is very easier to interface DHT 11 with a variety of different controllers, any controller or any microcontroller like Arduino or any computer like Raspberry Pi can be easily interfaced with DHT 11."
+      },
+      {
+        "start_time": "00:01:58",
+        "end_time": "00:02:02",
+        "text": "DHT 11 operates on 3 to 5 volt power as well as input output pin."
+      },
+      {
+        "start_time": "00:02:03",
+        "end_time": "00:02:11",
+        "text": "So it is okay if you operate it at 3.3 volt while using with Raspberry Pi and 5 volt while using it Arduino."
+      },
+      {
+        "start_time": "00:02:11",
+        "end_time": "00:02:18",
+        "text": "The maximum current it requires is quite low, it is 2.5 milliampere for that to only during the conversion."
+      },
+      {
+        "start_time": "00:02:19",
+        "end_time": "00:02:23",
+        "text": "And the humidity readings are good between 20 to 80% with 5% accuracy."
+      },
+      {
+        "start_time": "00:02:24",
+        "end_time": "00:02:31",
+        "text": "The temperature readings are good up to 50° Celsius and the tolerance is plus minus 2° Celsius."
+      },
+      {
+        "start_time": "00:02:32",
+        "end_time": "00:02:42",
+        "text": "The sampling rate, it means the data rate with which it can pass on the data should not be more than 1 hertz, means it cannot give data more than once every second."
+      },
+      {
+        "start_time": "00:02:43",
+        "end_time": "00:02:48",
+        "text": "The body size is specified a bit and it also specifies it has got four pins."
+      },
+      {
+        "start_time": "00:02:49",
+        "end_time": "00:02:58",
+        "text": "Although we need only one pin for interfacing and two pin for power connection, one redundant or NC pin is there which is not to be connected anywhere."
+      },
+      {
+        "start_time": "00:02:59",
+        "end_time": "00:03:00",
+        "text": "Let's see the pin out."
+      },
+      {
+        "start_time": "00:03:00",
+        "end_time": "00:03:02",
+        "text": "So this is the pin out of DHT 11."
+      },
+      {
+        "start_time": "00:03:03",
+        "end_time": "00:03:06",
+        "text": "Now, in this particular pin out, as you can see,"
+      },
+      {
+        "start_time": "00:03:07",
+        "end_time": "00:03:18",
+        "text": "the pin number one or the first pin from left hand side is VCC, which should go to 5 volt or 3.3 volt."
+      },
+      {
+        "start_time": "00:03:18",
+        "end_time": "00:03:20",
+        "text": "We are interfacing it with Raspberry Pi."
+      },
+      {
+        "start_time": "00:03:20",
+        "end_time": "00:03:24",
+        "text": "So this is the pin number one, which will go to 3.3 volt."
+      },
+      {
+        "start_time": "00:03:25",
+        "end_time": "00:03:26",
+        "text": "The second pin is data pin."
+      },
+      {
+        "start_time": "00:03:27",
+        "end_time": "00:03:32",
+        "text": "Third pin is NC and the fourth pin is ground or 0 volt pin."
+      },
+      {
+        "start_time": "00:03:33",
+        "end_time": "00:03:34",
+        "text": "This is how we have to give connections."
+      },
+      {
+        "start_time": "00:03:34",
+        "end_time": "00:03:43",
+        "text": "So this one will go to 3.3 volt. This is data pin which should go to any GPIO pin of Raspberry Pi and the last pin is ground."
+      },
+      {
+        "start_time": "00:03:44",
+        "end_time": "00:03:48",
+        "text": "Moreover, there is one thing required and that is this pull up resistor."
+      },
+      {
+        "start_time": "00:03:49",
+        "end_time": "00:03:52",
+        "text": "This is something very important and you simply cannot miss this."
+      },
+      {
+        "start_time": "00:03:52",
+        "end_time": "00:04:04",
+        "text": "You have to connect an external 10 kiloohm pull up resistor between VCC and data pin. So it will be something like this, you can connect it on a breadboard while interfacing."
+      },
+      {
+        "start_time": "00:04:05",
+        "end_time": "00:04:10",
+        "text": "So that's how the interfacing of DHT 11 is to be done with Raspberry Pi."
+      },
+      {
+        "start_time": "00:04:11",
+        "end_time": "00:04:18",
+        "text": "Let's see the library installation for DHT 11, how to install the library required and how to write down a sample program."
+      },
+      {
+        "start_time": "00:04:19",
+        "end_time": "00:04:24",
+        "text": "Now before installing any libraries from GitHub, GitHub I will discuss in detail in a latter video."
+      },
+      {
+        "start_time": "00:04:25",
+        "end_time": "00:04:30",
+        "text": "It's an online repository where the software codes can be saved and easily downloaded."
+      },
+      {
+        "start_time": "00:04:31",
+        "end_time": "00:04:34",
+        "text": "And we do make use of the Adafruit made libraries."
+      },
+      {
+        "start_time": "00:04:34",
+        "end_time": "00:04:49",
+        "text": "Adafruit is a very popular company making DIY kits which is situated in New York, USA and they also create lot of different libraries for Raspberry Pi to make things easier to handle the sensors like DHT 11."
+      },
+      {
+        "start_time": "00:04:50",
+        "end_time": "00:04:56",
+        "text": "Now, in order to install the library, what we have to do is we have to run some commands on Raspberry Pi."
+      },
+      {
+        "start_time": "00:04:57",
+        "end_time": "00:05:01",
+        "text": "So let me show you what are the commands that we need to run and how to install the library."
+      },
+      {
+        "start_time": "00:05:02",
+        "end_time": "00:05:13",
+        "text": "The very first command is this entire thing, Git clone https github.com/Adafruit/Adafruit_Python_DHT.git."
+      },
+      {
+        "start_time": "00:05:14",
+        "end_time": "00:05:18",
+        "text": "The underscores are not seen here because it is treated as a link."
+      },
+      {
+        "start_time": "00:05:20",
+        "end_time": "00:05:21",
+        "text": "Let me show you."
+      },
+      {
+        "start_time": "00:05:21",
+        "end_time": "00:05:27",
+        "text": "If I remove the hyperlink, you can see the underscores are there."
+      },
+      {
+        "start_time": "00:05:28",
+        "end_time": "00:05:29",
+        "text": "This is the first command."
+      },
+      {
+        "start_time": "00:05:31",
+        "end_time": "00:05:35",
+        "text": "What will happen with this command is you download the software."
+      },
+      {
+        "start_time": "00:05:35",
+        "end_time": "00:05:38",
+        "text": "to the Raspberry Pi. So this will simply"
+      },
+      {
+        "start_time": "00:05:39",
+        "end_time": "00:05:44",
+        "text": "download the code. The job of this is download"
+      },
+      {
+        "start_time": "00:05:45",
+        "end_time": "00:05:45",
+        "text": "code."
+      },
+      {
+        "start_time": "00:05:46",
+        "end_time": "00:05:49",
+        "text": "Second what we do is it downloads the code in a folder."
+      },
+      {
+        "start_time": "00:05:49",
+        "end_time": "00:05:52",
+        "text": "Okay? So it downloads the code folder."
+      },
+      {
+        "start_time": "00:05:53",
+        "end_time": "00:05:55",
+        "text": "That's the first command to execute."
+      },
+      {
+        "start_time": "00:05:56",
+        "end_time": "00:06:03",
+        "text": "The second command to execute is this. It means we go inside the downloaded folder with this particular command."
+      },
+      {
+        "start_time": "00:06:04",
+        "end_time": "00:06:11",
+        "text": "The third command is installation of some essentials which are required to install Python libraries."
+      },
+      {
+        "start_time": "00:06:11",
+        "end_time": "00:06:25",
+        "text": "So Sudo apt-get install build-essential Python dev is already there, Python openssl is required. So you can run this command depending upon if the packages are available or installed or not."
+      },
+      {
+        "start_time": "00:06:25",
+        "end_time": "00:06:26",
+        "text": "It will require those ones which are not installed."
+      },
+      {
+        "start_time": "00:06:27",
+        "end_time": "00:06:32",
+        "text": "And then the last command which you can see"
+      },
+      {
+        "start_time": "00:06:32",
+        "end_time": "00:06:38",
+        "text": "installation of Python library."
+      },
+      {
+        "start_time": "00:06:39",
+        "end_time": "00:06:43",
+        "text": "Now this particular command here is sudo Python."
+      },
+      {
+        "start_time": "00:06:43",
+        "end_time": "00:06:53",
+        "text": "And therefore what I have done is I have given you additional instruction where you can also directly install it for Python 3 with sudo pip3 install"
+      },
+      {
+        "start_time": "00:06:53",
+        "end_time": "00:06:54",
+        "text": "Adafruit Python DHT."
+      },
+      {
+        "start_time": "00:06:54",
+        "end_time": "00:06:58",
+        "text": "So either this or this approach is suitable."
+      },
+      {
+        "start_time": "00:06:58",
+        "end_time": "00:07:02",
+        "text": "So all these above steps"
+      },
+      {
+        "start_time": "00:07:02",
+        "end_time": "00:07:03",
+        "text": "or the single step below."
+      },
+      {
+        "start_time": "00:07:05",
+        "end_time": "00:07:07",
+        "text": "The fifth step or all the above steps."
+      },
+      {
+        "start_time": "00:07:08",
+        "end_time": "00:07:14",
+        "text": "And when you are doing it for Python 3, instead of making it sudo Python, make it Python 3 setup.py install."
+      },
+      {
+        "start_time": "00:07:15",
+        "end_time": "00:07:15",
+        "text": "Let me show you."
+      },
+      {
+        "start_time": "00:07:16",
+        "end_time": "00:07:17",
+        "text": "Now let's do it on Raspberry Pi itself."
+      },
+      {
+        "start_time": "00:07:17",
+        "end_time": "00:07:24",
+        "text": "So what I'll do is I'll follow these commands first, download the code, then go inside it and build it on my Raspberry Pi."
+      },
+      {
+        "start_time": "00:07:25",
+        "end_time": "00:07:27",
+        "text": "So let's copy this command."
+      },
+      {
+        "start_time": "00:07:28",
+        "end_time": "00:07:29",
+        "text": "Let's open my Raspberry Pi."
+      },
+      {
+        "start_time": "00:07:33",
+        "end_time": "00:07:35",
+        "text": "close whatever it was open over there."
+      },
+      {
+        "start_time": "00:07:35",
+        "end_time": "00:07:36",
+        "text": "full screen."
+      },
+      {
+        "start_time": "00:07:36",
+        "end_time": "00:07:37",
+        "text": "Clear once."
+      },
+      {
+        "start_time": "00:07:38",
+        "end_time": "00:07:38",
+        "text": "Now I'll paste it."
+      },
+      {
+        "start_time": "00:07:39",
+        "end_time": "00:07:43",
+        "text": "And it will download the Adafruit_Python_DHT."
+      },
+      {
+        "start_time": "00:07:44",
+        "end_time": "00:07:50",
+        "text": "Now, I can open the home folder and you can see the folder being created, Adafruit_Python_DHT."
+      },
+      {
+        "start_time": "00:07:51",
+        "end_time": "00:07:52",
+        "text": "Now let's go inside that folder."
+      },
+      {
+        "start_time": "00:07:53",
+        "end_time": "00:07:58",
+        "text": "CD Adafruit_Python_DHT."
+      },
+      {
+        "start_time": "00:08:00",
+        "end_time": "00:08:13",
+        "text": "At this point, we have to install some important or required dependencies by this command, sudo apt-get install build essential all in all."
+      },
+      {
+        "start_time": "00:08:14",
+        "end_time": "00:08:15",
+        "text": "So let's copy this."
+      },
+      {
+        "start_time": "00:08:17",
+        "end_time": "00:08:18",
+        "text": "And enter."
+      },
+      {
+        "start_time": "00:08:19",
+        "end_time": "00:08:24",
+        "text": "So those packages as required are installed. Unable to locate package Python-dev, Python openssl."
+      },
+      {
+        "start_time": "00:08:25",
+        "end_time": "00:08:30",
+        "text": "So let's remove the Python dash, let's keep only Python openssl."
+      },
+      {
+        "start_time": "00:08:33",
+        "end_time": "00:08:37",
+        "text": "So they are already installed. No need to do anything over there."
+      },
+      {
+        "start_time": "00:08:38",
+        "end_time": "00:08:43",
+        "text": "Now let's run the last command which is sudo Python setup.py install."
+      },
+      {
+        "start_time": "00:08:44",
+        "end_time": "00:08:51",
+        "text": "sudo Python 3 I will use setup.py space install."
+      },
+      {
+        "start_time": "00:08:51",
+        "end_time": "00:09:03",
+        "text": "Because we are installing the libraries for Python 3 and Raspberry Pi by default contains both Python 2 as well as Python 3. And whenever you refer to something as just Python, it is often times referred to Python 2."
+      },
+      {
+        "start_time": "00:09:04",
+        "end_time": "00:09:10",
+        "text": "And hence, if you have to specify Python 3, better you simply write down sudo Python 3 like this."
+      },
+      {
+        "start_time": "00:09:12",
+        "end_time": "00:09:19",
+        "text": "Now it will run the libraries. It will install the libraries onto Raspberry Pi which we have just downloaded."
+      },
+      {
+        "start_time": "00:09:21",
+        "end_time": "00:09:23",
+        "text": "Now the library installation is done."
+      },
+      {
+        "start_time": "00:09:25",
+        "end_time": "00:09:30",
+        "text": "Next what you have to do is go to Adafruit_Python DHT folder."
+      },
+      {
+        "start_time": "00:09:32",
+        "end_time": "00:09:38",
+        "text": "You will see the examples folder over there, and here you will see the simpletest.py."
+      },
+      {
+        "start_time": "00:09:40",
+        "end_time": "00:09:42",
+        "text": "So simply copy the simple test.py."
+      },
+      {
+        "start_time": "00:09:44",
+        "end_time": "00:09:52",
+        "text": "Keep it somewhere. So what I'll do is I'll create a folder over here, course codes."
+      },
+      {
+        "start_time": "00:09:54",
+        "end_time": "00:09:55",
+        "text": "I'll just paste it here."
+      },
+      {
+        "start_time": "00:09:55",
+        "end_time": "00:09:57",
+        "text": "simple test.py."
+      },
+      {
+        "start_time": "00:09:58",
+        "end_time": "00:10:05",
+        "text": "I will rename it so that it reads DHT_simple test.py."
+      },
+      {
+        "start_time": "00:10:07",
+        "end_time": "00:10:12",
+        "text": "Now it's time to perform the connections with Raspberry Pi and see the output of this program."
+      },
+      {
+        "start_time": "00:10:13",
+        "end_time": "00:10:18",
+        "text": "Let's see the connections and let's then try to see the output of this code in the next video."
+      },
+      {
+        "start_time": "00:10:19",
+        "end_time": "00:10:20",
+        "text": "Thank you for watching this one."
+      },
+      {
+        "start_time": "00:10:20",
+        "end_time": "00:10:24",
+        "text": "Now as you can see, I have a DHT11 module over here."
+      },
+      {
+        "start_time": "00:10:25",
+        "end_time": "00:10:29",
+        "text": "So there isn't much change in what I showed you and this module."
+      },
+      {
+        "start_time": "00:10:30",
+        "end_time": "00:10:39",
+        "text": "The only change is the required pull-up resistor is present onto this PCB along with a power-on indication LED."
+      },
+      {
+        "start_time": "00:10:39",
+        "end_time": "00:10:45",
+        "text": "And therefore, it has got only three pins as you can read, VCC, data, and ground."
+      },
+      {
+        "start_time": "00:10:45",
+        "end_time": "00:10:54",
+        "text": "So, if you have a module like this, you can directly interface VCC pin here, data pin here, and ground pin right over here."
+      },
+      {
+        "start_time": "00:10:55",
+        "end_time": "00:11:03",
+        "text": "Otherwise, you can install the DHT 11 sensor in the breadboard and then perform the connections as you want."
+      },
+      {
+        "start_time": "00:11:04",
+        "end_time": "00:11:14",
+        "text": "For me, since I have this module, I don't want to use the breadboard now. I can simply use female to female connector and directly connect it to Raspberry Pi."
+      },
+      {
+        "start_time": "00:11:19",
+        "end_time": "00:11:21",
+        "text": "Now I'll just keep this setup aside."
+      },
+      {
+        "start_time": "00:11:22",
+        "end_time": "00:11:23",
+        "text": "This is the LDR setup we did."
+      },
+      {
+        "start_time": "00:11:24",
+        "end_time": "00:11:28",
+        "text": "Now you can see, this is the female to female wires."
+      },
+      {
+        "start_time": "00:11:32",
+        "end_time": "00:11:34",
+        "text": "Both ends are female connectors as you can see."
+      },
+      {
+        "start_time": "00:11:36",
+        "end_time": "00:11:41",
+        "text": "Now I'll connect it like this. All three pins."
+      },
+      {
+        "start_time": "00:11:42",
+        "end_time": "00:11:46",
+        "text": "You can see the white is VCC and the brown is ground, the black is data."
+      },
+      {
+        "start_time": "00:11:47",
+        "end_time": "00:11:52",
+        "text": "So the white is VCC and brown is ground."
+      },
+      {
+        "start_time": "00:11:53",
+        "end_time": "00:11:56",
+        "text": "So this is the VCC connection that I'm making."
+      },
+      {
+        "start_time": "00:11:57",
+        "end_time": "00:12:02",
+        "text": "The third pin from left uh first pin from left side is VCC."
+      },
+      {
+        "start_time": "00:12:03",
+        "end_time": "00:12:06",
+        "text": "The third pin from right side is ground."
+      },
+      {
+        "start_time": "00:12:10",
+        "end_time": "00:12:13",
+        "text": "After this connection, I can see the LED powered on over here."
+      },
+      {
+        "start_time": "00:12:14",
+        "end_time": "00:12:18",
+        "text": "And this is the data pin, which I connect to the identified pin, pin number 21."
+      },
+      {
+        "start_time": "00:12:19",
+        "end_time": "00:12:24",
+        "text": "Now the connections are done for this particular sensor."
+      },
+      {
+        "start_time": "00:12:24",
+        "end_time": "00:12:26",
+        "text": "Now let's see the output."
+      },
+      {
+        "start_time": "00:12:26",
+        "end_time": "00:12:27",
+        "text": "Let's keep it as it is."
+      },
+      {
+        "start_time": "00:12:27",
+        "end_time": "00:12:33",
+        "text": "Now let's open this DHT_simple test.py in Thonny IDE."
+      },
+      {
+        "start_time": "00:12:34",
+        "end_time": "00:12:40",
+        "text": "It's a simple testing code, guys. So I'll first demonstrate this and then we'll try to do something out of this test code."
+      },
+      {
+        "start_time": "00:12:41",
+        "end_time": "00:12:42",
+        "text": "It has got lot of comments into this code."
+      },
+      {
+        "start_time": "00:12:45",
+        "end_time": "00:12:47",
+        "text": "First, there is declaration of sensor."
+      },
+      {
+        "start_time": "00:12:47",
+        "end_time": "00:13:14",
+        "text": "So, we are not using DHT 22, we are using DHT 11. So just make it DHT 11. And let me clarify the code a bit so that you understand it well. And don't think that it's quite big or quite heavy. First, declaration of the sensor. If you can, if you want, you can use DHT 22 also, which is a bit accurate than DHT 11, but expensive."
+      },
+      {
+        "start_time": "00:13:15",
+        "end_time": "00:13:21",
+        "text": "If it is DHT 22, just make it 22, otherwise make it 11. Connections and everything remains almost same."
+      },
+      {
+        "start_time": "00:13:22",
+        "end_time": "00:13:24",
+        "text": "Then here we mention the pin."
+      },
+      {
+        "start_time": "00:13:24",
+        "end_time": "00:13:31",
+        "text": "Right now we have connected it to 21 number of Raspberry Pi. So let's make it 21."
+      },
+      {
+        "start_time": "00:13:32",
+        "end_time": "00:13:33",
+        "text": "And now these are the lines."
+      },
+      {
+        "start_time": "00:13:35",
+        "end_time": "00:13:41",
+        "text": "So temperature, humidity, temperature is equal to Adafruit_DHT.read_retry."
+      },
+      {
+        "start_time": "00:13:42",
+        "end_time": "00:13:50",
+        "text": "Why read retry is because in single reading, you may not get the DHT 11 response and therefore you want to retry it."
+      },
+      {
+        "start_time": "00:13:51",
+        "end_time": "00:13:58",
+        "text": "This particular line over here will wait for two seconds and it will retry it for two seconds."
+      },
+      {
+        "start_time": "00:13:58",
+        "end_time": "00:13:59",
+        "text": "If there is no data, then an error will be displayed."
+      },
+      {
+        "start_time": "00:14:00",
+        "end_time": "00:14:12",
+        "text": "After the data is received, on the next line, what we do is we are checking if humidity is not none and temperature is not none. It means we have got some fair valid values for temperature and humidity."
+      },
+      {
+        "start_time": "00:14:13",
+        "end_time": "00:14:17",
+        "text": "And in that case, what we do is, I will remove this complications and make it simple."
+      },
+      {
+        "start_time": "00:14:19",
+        "end_time": "00:14:27",
+        "text": "And then what we'll do is we'll print Temp is equal to the first parameter and the humidity is equal to second parameter."
+      },
+      {
+        "start_time": "00:14:28",
+        "end_time": "00:14:37",
+        "text": "So Temp is equal to bracket zero, humidity is equal to curly bracket one dot format, temperature comma humidity."
+      },
+      {
+        "start_time": "00:14:37",
+        "end_time": "00:14:43",
+        "text": "Else fail to get reading, try again. It means if either of these two value is none or zero, it means fail to get the reading and try again."
+      },
+      {
+        "start_time": "00:14:44",
+        "end_time": "00:14:45",
+        "text": "Now let's run this code."
+      },
+      {
+        "start_time": "00:14:46",
+        "end_time": "00:14:52",
+        "text": "The connections are done and we are supposed to get a reading over here or the temperature or humidity value over here."
+      },
+      {
+        "start_time": "00:14:53",
+        "end_time": "00:14:55",
+        "text": "As you can see, we got the temperature and humidity value."
+      },
+      {
+        "start_time": "00:14:56",
+        "end_time": "00:15:01",
+        "text": "So Temp is equal to 28 degree Celsius and humidity is equal to 47%."
+      },
+      {
+        "start_time": "00:15:01",
+        "end_time": "00:15:04",
+        "text": "But the program exited by giving a single reading."
+      },
+      {
+        "start_time": "00:15:05",
+        "end_time": "00:15:11",
+        "text": "Now what I want is I would like to convert this program into a code which can give continuous values."
+      },
+      {
+        "start_time": "00:15:12",
+        "end_time": "00:15:14",
+        "text": "Let's switch to the regular mode of thonny."
+      },
+      {
+        "start_time": "00:15:16",
+        "end_time": "00:15:19",
+        "text": "by closing it and restarting it again."
+      },
+      {
+        "start_time": "00:15:24",
+        "end_time": "00:15:28",
+        "text": "This is the full mode in which you can save the programs as needed."
+      },
+      {
+        "start_time": "00:15:30",
+        "end_time": "00:15:32",
+        "text": "So I'll go to file and I will call it save as."
+      },
+      {
+        "start_time": "00:15:39",
+        "end_time": "00:15:45",
+        "text": "And then DHT instead of simple test, let's call continuous test."
+      },
+      {
+        "start_time": "00:15:49",
+        "end_time": "00:15:53",
+        "text": "Let's shorten the code. Now you have got a fair idea of how it's working."
+      },
+      {
+        "start_time": "00:15:57",
+        "end_time": "00:16:03",
+        "text": "Now what I want is the code should run in infinite loop. So I will also import time library."
+      },
+      {
+        "start_time": "00:16:06",
+        "end_time": "00:16:12",
+        "text": "And from this point on onwards, my program should be running in while true loop."
+      },
+      {
+        "start_time": "00:16:12",
+        "end_time": "00:16:14",
+        "text": "So that it gives us continuous readings."
+      },
+      {
+        "start_time": "00:16:16",
+        "end_time": "00:16:22",
+        "text": "After you write down while true and the curly brace uh the colon is opened, you need to indent your program like this."
+      },
+      {
+        "start_time": "00:16:27",
+        "end_time": "00:16:31",
+        "text": "After if also the indentation is required like this."
+      },
+      {
+        "start_time": "00:16:31",
+        "end_time": "00:16:32",
+        "text": "Similarly for else."
+      },
+      {
+        "start_time": "00:16:34",
+        "end_time": "00:16:35",
+        "text": "Now this is done once."
+      },
+      {
+        "start_time": "00:16:36",
+        "end_time": "00:16:42",
+        "text": "After single iteration, what should we do is we'll take a delay of let's say 1 second."
+      },
+      {
+        "start_time": "00:16:44",
+        "end_time": "00:16:45",
+        "text": "And now let's run this code."
+      },
+      {
+        "start_time": "00:16:46",
+        "end_time": "00:16:47",
+        "text": "Now let's see the output over here."
+      },
+      {
+        "start_time": "00:16:49",
+        "end_time": "00:16:56",
+        "text": "So we are getting the readings temperature is equal to 27 degree Celsius, humidity is equal to 48 point something, 49.0."
+      },
+      {
+        "start_time": "00:16:57",
+        "end_time": "00:16:59",
+        "text": "I also happen to have a soldering gun over here."
+      },
+      {
+        "start_time": "00:17:01",
+        "end_time": "00:17:04",
+        "text": "So this is the soldering iron that I have."
+      },
+      {
+        "start_time": "00:17:05",
+        "end_time": "00:17:12",
+        "text": "And I can keep it close to this DHT 11 so that it can sense some of the temperature that it's giving."
+      },
+      {
+        "start_time": "00:17:14",
+        "end_time": "00:17:17",
+        "text": "So the soldering gun is turned on."
+      },
+      {
+        "start_time": "00:17:17",
+        "end_time": "00:17:18",
+        "text": "It has started heating up."
+      },
+      {
+        "start_time": "00:17:19",
+        "end_time": "00:17:21",
+        "text": "But uh we'll take some time."
+      },
+      {
+        "start_time": "00:17:22",
+        "end_time": "00:17:24",
+        "text": "Now let's try to see."
+      },
+      {
+        "start_time": "00:17:27",
+        "end_time": "00:17:29",
+        "text": "So the bell is quite hot now."
+      },
+      {
+        "start_time": "00:17:29",
+        "end_time": "00:17:32",
+        "text": "Now let's keep it close and blow some air through it."
+      },
+      {
+        "start_time": "00:17:32",
+        "end_time": "00:17:42",
+        "text": "So it is sensing the atmospheric temperature and therefore not much change would be observed. Still you can see the temperature has risen by 1 degree Celsius in proximity to the gun."
+      },
+      {
+        "start_time": "00:17:44",
+        "end_time": "00:17:46",
+        "text": "I have one more experiment which we can do here."
+      },
+      {
+        "start_time": "00:17:48",
+        "end_time": "00:17:51",
+        "text": "Instead of the soldering gun, now I'll use the hot air gun."
+      },
+      {
+        "start_time": "00:17:52",
+        "end_time": "00:17:54",
+        "text": "How much temperature it can sense well."
+      },
+      {
+        "start_time": "00:17:55",
+        "end_time": "00:17:58",
+        "text": "Now this is the hot air gun that I have. Let me show you."
+      },
+      {
+        "start_time": "00:18:01",
+        "end_time": "00:18:08",
+        "text": "These are the settings for it. So I'll just make it on now. This is the air and this is temperature setting. So let's keep the temperature on the mid setting."
+      },
+      {
+        "start_time": "00:18:09",
+        "end_time": "00:18:16",
+        "text": "Air normal should not be very too much high flow, otherwise the sensor would get damaged."
+      },
+      {
+        "start_time": "00:18:17",
+        "end_time": "00:18:24",
+        "text": "Make sure if you are doing this kind of experiments, then keep a distance between the nozzle and your hand, as well as the nozzle and the sensor also."
+      },
+      {
+        "start_time": "00:18:25",
+        "end_time": "00:18:27",
+        "text": "So this is the nozzle."
+      },
+      {
+        "start_time": "00:18:30",
+        "end_time": "00:18:31",
+        "text": "And this is the sensor."
+      },
+      {
+        "start_time": "00:18:31",
+        "end_time": "00:18:33",
+        "text": "I'll keep it quite far away from each other."
+      },
+      {
+        "start_time": "00:18:34",
+        "end_time": "00:18:35",
+        "text": "But hot air is blown."
+      },
+      {
+        "start_time": "00:18:40",
+        "end_time": "00:18:43",
+        "text": "Code has stopped. Let's stop it and let's run it again."
+      },
+      {
+        "start_time": "00:18:50",
+        "end_time": "00:19:05",
+        "text": "So you can see 31 degrees Celsius. If I now blow the air close to it, then it's reading the temperature value 34, 35, 36."
+      },
+      {
+        "start_time": "00:19:06",
+        "end_time": "00:19:14",
+        "text": "If I bring it closer, then it is 40 degrees Celsius, and the humidity is reduced because I'm blowing hot air into it."
+      },
+      {
+        "start_time": "00:19:15",
+        "end_time": "00:19:21",
+        "text": "47, 49. Don't do it more than that."
+      },
+      {
+        "start_time": "00:19:22",
+        "end_time": "00:19:24",
+        "text": "Otherwise, you may damage the sensor."
+      },
+      {
+        "start_time": "00:19:27",
+        "end_time": "00:19:31",
+        "text": "Now, let's keep the gun dead. Let's close the air flow."
+      },
+      {
+        "start_time": "00:19:32",
+        "end_time": "00:19:34",
+        "text": "Let me remove the setup."
+      },
+      {
+        "start_time": "00:19:34",
+        "end_time": "00:19:39",
+        "text": "And now observe the readings. Slowly they will come back to the normal position."
+      },
+      {
+        "start_time": "00:19:40",
+        "end_time": "00:19:43",
+        "text": "47, 46 and so on."
+      },
+      {
+        "start_time": "00:19:45",
+        "end_time": "00:19:48",
+        "text": "Should take some time, but after some time it will come to normal point."
+      },
+      {
+        "start_time": "00:19:50",
+        "end_time": "00:19:57",
+        "text": "So this is the code that you need to run or to read the temperature from DHT 11 sensor."
+      },
+      {
+        "start_time": "00:19:58",
+        "end_time": "00:20:06",
+        "text": "We have seen the DHT 11 sensor in action, as well as we have seen it extensively tested with a hot air gun also."
+      },
+      {
+        "start_time": "00:20:07",
+        "end_time": "00:20:12",
+        "text": "Make sure whenever you perform these kind of experiments, you maintain proper safety."
+      },
+      {
+        "start_time": "00:20:13",
+        "end_time": "00:20:14",
+        "text": "Thank you for watching this video."
+      }
+    ],
+    "visual_description": [
+      {
+        "start_time": "00:00:00",
+        "end_time": "00:00:56",
+        "description": "Presentation slide shows a close-up image of a blue DHT11 sensor with three pins on the left. On the right, the title text reads: \"DHT11: Humidity and Temperature Sensor\". A black shape sits below the text, angled upwards towards the right."
+      },
+      {
+        "start_time": "00:00:56",
+        "end_time": "00:01:21",
+        "description": "Presentation slide titled \"About DHT11\". The text lists bullet points: \"It is a digital temperature and humidity sensor.\", \"The sensor contains an NTC (Negative Temperature Coefficient) Temperature Sensor,\", \"And a Resistive-type Humidity Sensor.\", \"Requires one wire for the data signal.\""
+      },
+      {
+        "start_time": "00:01:21",
+        "end_time": "00:01:29",
+        "description": "Returns to the first slide showing the DHT11 sensor image and title."
+      },
+      {
+        "start_time": "00:01:29",
+        "end_time": "00:01:55",
+        "description": "Returns to the \"About DHT11\" slide with the bullet points."
+      },
+      {
+        "start_time": "00:01:55",
+        "end_time": "00:03:00",
+        "description": "Presentation slide titled \"DHT 11 Features\". Bullet points list features: \"3 to 5V power and I/O\", \"2.5mA max current use during conversion (while requesting data)\", \"Good for 20-80% humidity readings with 5% accuracy\", \"Good for 0-50°C temperature readings ±2°C accuracy\", \"No more than 1 Hz sampling rate (once every second)\", \"Body size 15.5mm x 12mm x 5.5mm\", \"4 pins with 0.1\" spacing\"."
+      },
+      {
+        "start_time": "00:03:00",
+        "end_time": "00:04:11",
+        "description": "Presentation slide titled \"Pin Diagram of DHT 11\". On the left, a simple circuit diagram labeled \"DHT22\" shows connections for +3.3v, a 10k Ohm pull-up resistor to an IO Pin, and Ground. On the right, an image shows the DHT11 sensor from the front, with arrows pointing to the pins labeled Vcc(1), Data(2), and Gnd(4). Pin 3 is marked with a red X (NC). Below the images, text lists the pin functions: \"1. VCC - Power supply 3.5V to 5.5V\", \"2. Data - Outputs both Temperature and Humidity through serial Data\", \"3. NC\", \"4. GND - Connected to the ground of the circuit\". Red handwriting appears on the screen annotating the connections."
+      },
+      {
+        "start_time": "00:04:11",
+        "end_time": "00:04:18",
+        "description": "Presentation slide with a blue inkblot background and white text: \"Library Installation for DHT11\"."
+      },
+      {
+        "start_time": "00:04:18",
+        "end_time": "00:04:58",
+        "description": "Presentation slide titled \"Installation of Git In Pi\". Bullet points read: \"Here we are using the Adafruit DHT11 Python library.\", \"Download it from git.\", \"If git is not present then install it in command prompt: sudo apt-get install git-core\", \"Note: If you get an error installing Git, run sudo apt-get update\"."
+      },
+      {
+        "start_time": "00:04:58",
+        "end_time": "00:05:19",
+        "description": "Presentation slide titled \"Installation of the Adafruit DHT11 library\". It lists 5 steps with command-line instructions: \"1. Enter this at the command prompt to download the library: git clone https://github.com/adafruit/Adafruit_Python_DHT.git\", \"2. Change directories with: cd Adafruit_Python_DHT\", \"3. Now enter this: sudo apt-get install build-essential python-dev python-openssl\", \"4. Then install the library with: sudo python setup.py install\", \"5. Now install : sudo pip3 install Adafruit_Python_DHT\". A pop-up appears asking \"Want to keep your ink annotations?\". The user clicks \"Keep\"."
+      },
+      {
+        "start_time": "00:05:19",
+        "end_time": "00:07:29",
+        "description": "Split screen view. Left: The same presentation slide \"Installation of the Adafruit DHT11 library\" with command-line instructions. Red handwriting annotates steps 1, 2, 4, and 5, explaining their purpose (Download code folder, Install python lib, OR). Right: A computer screen showing the Raspberry Pi desktop interface, first a file manager window, then a terminal window."
+      },
+      {
+        "start_time": "00:07:29",
+        "end_time": "00:08:16",
+        "description": "The user switches to the Raspberry Pi terminal window (VNC Viewer). The 'git clone' command from step 1 is pasted and executed. It shows cloning progress and completion."
+      },
+      {
+        "start_time": "00:08:16",
+        "end_time": "00:08:37",
+        "description": "In the terminal, the 'cd' command from step 2 is executed. Then, the 'sudo apt-get install' command from step 3 is pasted and executed. It shows package list reading, dependency tree building, and states that packages are already the newest version or manually installed."
+      },
+      {
+        "start_time": "00:08:37",
+        "end_time": "00:09:24",
+        "description": "In the terminal, the command 'sudo python3 setup.py install' (modified from step 4) is executed. It shows the installation process, including running installs, creating directories, copying files, building extensions, and finishing processing dependencies."
+      },
+      {
+        "start_time": "00:09:24",
+        "end_time": "00:10:07",
+        "description": "The user opens the Raspberry Pi file manager, navigates into the newly created 'Adafruit_Python_DHT' directory, then into the 'examples' subdirectory. The user copies the 'simpletest.py' file, navigates back to the '/home/pi' directory, creates a new folder named 'courseCodes', enters it, pastes the 'simpletest.py' file, and renames it to 'dht_simpletest.py'."
+      },
+      {
+        "start_time": "00:10:07",
+        "end_time": "00:10:19",
+        "description": "The user returns to the physical view. A hand holds a small DHT11 module (different from the first one, this is mounted on a small blue PCB with 3 pins). A breadboard with some components (LDR, capacitor, resistor) connected to a Raspberry Pi is visible in the background."
+      },
+      {
+        "start_time": "00:10:19",
+        "end_time": "00:10:55",
+        "description": "The user places the DHT11 module onto the breadboard. The module has VCC, DATA, and GND pins clearly marked. A red LED on the module lights up. The user picks up the module again."
+      },
+      {
+        "start_time": "00:10:55",
+        "end_time": "00:11:19",
+        "description": "The user shows female-to-female jumper wires and connects three of them (white, black, brown) to the VCC, DATA, and GND pins of the DHT11 module, respectively. The white wire is connected to a 3.3V pin on the Raspberry Pi, the brown wire to a GND pin, and the black wire (DATA) to GPIO pin 21."
+      },
+      {
+        "start_time": "00:11:19",
+        "end_time": "00:11:27",
+        "description": "Close-up of the Raspberry Pi with the DHT11 module connected via the jumper wires. The red LED on the DHT11 module is lit."
+      },
+      {
+        "start_time": "00:11:27",
+        "end_time": "00:11:39",
+        "description": "Split screen view. Left: Thonny Python IDE showing the 'dht_simpletest.py' code. Right: The physical setup with the Raspberry Pi and connected DHT11 module."
+      },
+      {
+        "start_time": "00:11:39",
+        "end_time": "00:12:26",
+        "description": "The user edits the Python code in Thonny, changing `Adafruit_DHT.DHT22` to `Adafruit_DHT.DHT11` and setting `pin = 21`. The comments are removed or simplified to show the core logic: import library, define sensor and pin, read humidity and temperature using `Adafruit_DHT.read_retry`, check if readings are valid (not None), print formatted temperature and humidity, else print error."
+      },
+      {
+        "start_time": "00:12:26",
+        "end_time": "00:13:14",
+        "description": "The user runs the 'dht_simpletest.py' script in Thonny. The Shell output shows a single line: \"Temp=28.0*C Humidity=47.0%\". The physical setup on the right remains unchanged."
+      },
+      {
+        "start_time": "00:13:14",
+        "end_time": "00:16:46",
+        "description": "The user modifies the Python code to run continuously. `import time` is added. The main reading and printing logic is placed inside a `while True:` loop. Indentation is adjusted accordingly. A `time.sleep(1)` is added at the end of the loop."
+      },
+      {
+        "start_time": "00:16:46",
+        "end_time": "00:17:01",
+        "description": "The user runs the modified script ('dht_cont_test.py'). The Shell output now continuously prints temperature and humidity readings every second (e.g., Temp=27.0*C Humidity=48.0%, Temp=27.0*C Humidity=49.0%). The user picks up a soldering iron."
+      },
+      {
+        "start_time": "00:17:01",
+        "end_time": "00:17:27",
+        "description": "The user holds the hot soldering iron near the DHT11 sensor. The temperature readings in the Shell output start to increase (28, 31, 34, 35, 36, 38, 40, 43, 47, 49, 51 degrees C) while humidity decreases significantly (down to 19-20%)."
+      },
+      {
+        "start_time": "00:17:27",
+        "end_time": "00:17:34",
+        "description": "The user removes the soldering iron. A large, professional-looking hot air rework station appears in the view next to the Raspberry Pi setup."
+      },
+      {
+        "start_time": "00:17:34",
+        "end_time": "00:18:18",
+        "description": "The user turns on the hot air station, adjusts the temperature and air flow knobs. The Python script continues to output readings in the Thonny Shell. The user picks up the hot air gun nozzle."
+      },
+      {
+        "start_time": "00:18:18",
+        "end_time": "00:18:44",
+        "description": "The user points the hot air gun nozzle towards the DHT11 sensor from a distance, blowing hot air. The temperature readings in the Shell rise again (up to 51 C), and humidity drops further (down to ~18%). The script stops unexpectedly, and the user restarts it."
+      },
+      {
+        "start_time": "00:18:44",
+        "end_time": "00:19:34",
+        "description": "The script runs again, showing continuous readings. The user again blows hot air from the rework station onto the sensor. Temperature rises (31, 34, 35, 38, 40, 43, 47, 49, 51 C), and humidity decreases (44, 39, 36, 32, 29, 26, 23, 21, 20, 19%). The user turns off the hot air station."
+      },
+      {
+        "start_time": "00:19:34",
+        "end_time": "00:20:14",
+        "description": "The hot air station is removed from view. The Shell output shows the temperature readings gradually decreasing (51, 50, 49, 48, 47, 46, 45, 44, 43 C) and humidity slowly increasing (19, 20, 22, 24, 25%) as the sensor cools down to ambient conditions."
+      }
+    ]
+  }

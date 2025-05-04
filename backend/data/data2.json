@@ -1,0 +1,72 @@
+{
+    "URL": "https://www.youtube.com/shorts/HGRbtzGMQos",
+    "transcription": [
+      {
+        "start_time": "00:00:08.054",
+        "end_time": "00:11.924",
+        "text": "First things first I'ma say all the words inside my head"
+      },
+      {
+        "start_time": "00:12.664",
+        "end_time": "00:17.824",
+        "text": "I'm fired up and tired of the way that things have been, oh ooh"
+      },
+      {
+        "start_time": "00:17.824",
+        "end_time": "00:22.034",
+        "text": "The way that things have been, oh ooh"
+      },
+      {
+        "start_time": "00:23.344",
+        "end_time": "00:27.124",
+        "text": "Second thing second Don't you tell me what you think that I can be"
+      },
+      {
+        "start_time": "00:27.624",
+        "end_time": "00:32.284",
+        "text": "I'm the one at the sail, I'm the master of my sea, oh ooh"
+      },
+      {
+        "start_time": "00:33.544",
+        "end_time": "00:37.434",
+        "text": "The master of my sea, oh ooh"
+      },
+      {
+        "start_time": "00:38.474",
+        "end_time": "00:40.074",
+        "text": "I was broken from a young"
+      }
+    ],
+    "visual_description": [
+      {
+        "start_time": "00:00:00.000",
+        "end_time": "00:02.666",
+        "description": "A wide shot shows a yellow desk with a laptop, a Raspberry Pi board, and a small blue sensor module connected by wires. The laptop screen displays lines of text, seemingly sensor readings (Temp and Humidity). The Raspberry Pi is connected to the laptop via USB cables. A brick-patterned wall is visible in the background."
+      },
+      {
+        "start_time": "00:02.666",
+        "end_time": "00:05.732",
+        "description": "The camera zooms in slightly towards the laptop and the connected hardware. The text on the laptop screen continues to scroll, showing repeated lines of \"Temp=30.0C Humidity=11.0%\"."
+      },
+      {
+        "start_time": "00:05.732",
+        "end_time": "00:10.432",
+        "description": "The camera zooms in further, focusing on the blue DHT sensor module connected with yellow and green wires. A red LED on the module is lit. The laptop keyboard and touchpad are partially visible."
+      },
+      {
+        "start_time": "00:10.432",
+        "end_time": "00:17.265",
+        "description": "The camera pans left and tilts up slightly, showing a closer view of the green Raspberry Pi board. Wires connect its GPIO pins. USB ports, an Ethernet port, and an HDMI port are visible. A green power LED is lit on the Pi."
+      },
+      {
+        "start_time": "00:17.265",
+        "end_time": "00:24.365",
+        "description": "The camera slowly pans back to the right, showing the Raspberry Pi, wires, and the laptop again from a slightly lower angle. The sensor readings on the laptop screen continue to update."
+      },
+      {
+        "start_time": "00:24.365",
+        "end_time": "00:39.998",
+        "description": "The camera zooms in on the laptop screen, filling the frame with the black terminal window displaying scrolling sensor data. Most lines show \"Temp=30.0C Humidity=11.0%\". Occasionally, other values appear (e.g., Temp=32.0C, Humidity=12.0%, Temp=31.0C). Near the bottom, a message \"Sensor failure. Check wiring.\" appears briefly before more readings scroll past."
+      }
+    ]
+  }

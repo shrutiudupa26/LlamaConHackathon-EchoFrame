@@ -1,0 +1,132 @@
+{
+    "URL": "https://youtu.be/c9RY8RosGPo",
+    "transcription": [
+      {
+        "start_time": "00:02:51",
+        "end_time": "00:03:18",
+        "text": "Hello everyone. Welcome back to the course of Raspberry Pi Pico. So, in this video, I'm going to show you how you can make weather station using Raspberry Pi Pico and DHT 11 temperature and humidity sensor. So, without wasting any time, let's get started."
+      },
+      {
+        "start_time": "00:27:84",
+        "end_time": "00:30:624",
+        "text": "So to make the project,"
+      },
+      {
+        "start_time": "00:30:624",
+        "end_time": "00:40:124",
+        "text": "we need few components like LCD display, few jumper wires, DST 11 temperature humidity sensor, Raspberry Pi Pico and a bread board."
+      },
+      {
+        "start_time": "00:40:464",
+        "end_time": "00:42:694",
+        "text": "So now let us see the connections."
+      },
+      {
+        "start_time": "01:31:217",
+        "end_time": "01:38:857",
+        "text": "So, according to our circuit diagram, I already built the connections. So now let us move to the coding part."
+      },
+      {
+        "start_time": "01:40:504",
+        "end_time": "02:41:194",
+        "text": "Now, let us come to the coding section. For this project, we require four files, which is dht.py files, lcd api.py, Pco i2c lcd.py and main.py. So, we have to to work in the main.py files. First of all, I declared i2c equals to i2c and LCD equals to i2c LCD. These are basically the i2c pin and the LCD display. And then uh we have to declare that T equals to sensor.temperature, H equals to sensor.humidity and sensor we have to declare as DST 11 pin which we are using as a temperature and humidity sensor. Um then uh we have to use all the all these things, the time.sleep one, um LCD.clear, I already explained this syntax in the my previous video, you can go through the that video or I will give the link of the video in the description. You can watch from there."
+      },
+      {
+        "start_time": "02:41:724",
+        "end_time": "02:48:114",
+        "text": "So, these are the This is my code. Let us run the code and upload to the Pico board."
+      },
+      {
+        "start_time": "02:53:982",
+        "end_time": "03:12:42",
+        "text": "So, after uploading the code to my Raspberry Pi Pico, you can see that my temperature currently showing is 33.2° Celsius and humidity is 54. 0 percentage. So, in this way you can make a weather station using Raspberry Pi Pico and DHT 11 temperature sensor."
+      },
+      {
+        "start_time": "03:12:42",
+        "end_time": "03:19:832",
+        "text": "So, now check whether my uh temperature is showing showing is exactly matching to my actual value or not."
+      },
+      {
+        "start_time": "03:20:562",
+        "end_time": "03:20:852",
+        "text": "So,"
+      },
+      {
+        "start_time": "03:27:212",
+        "end_time": "03:28:812",
+        "text": "So let us check."
+      },
+      {
+        "start_time": "03:39:532",
+        "end_time": "03:41:352",
+        "text": "Today's temperature"
+      },
+      {
+        "start_time": "03:43:322",
+        "end_time": "03:43:632",
+        "text": "Yes, so"
+      },
+      {
+        "start_time": "03:49:582",
+        "end_time": "04:06:522",
+        "text": "So currently it is showing that the today's temperature is 34° Celsius and it is showing that 33.1° Celsius. It is almost uh it is a at least 1. 1.1 degree difference of 1.1 degree Celsius."
+      },
+      {
+        "start_time": "04:07:292",
+        "end_time": "04:24:492",
+        "text": "So there is not much difference between the measured value and actual value. The measured value is my uh the temperature reading on my LCD display and my actual value is this 34° Celsius. So, in this way you can make a weather station using Raspberry Pi Pico."
+      },
+      {
+        "start_time": "04:25:382",
+        "end_time": "04:31:32",
+        "text": "So, if you like my video, then please like, share and subscribe for more upcoming videos. Thank you."
+      }
+    ],
+    "visual_description": [
+      {
+        "start_time": "00:00:00",
+        "end_time": "00:18:557",
+        "description": "A Raspberry Pi Pico microcontroller is connected to a DHT11 temperature and humidity sensor (blue module with red LED lit) and a 16x2 LCD display via a breadboard and jumper wires. The LCD displays changing temperature (around 33.0 C) and humidity (around 54.0-55.0 %) readings. A laptop is partially visible in the background."
+      },
+      {
+        "start_time": "00:18:877",
+        "end_time": "00:25:917",
+        "description": "Animated intro sequence with futuristic HUD elements. The text 'TECH PENTAGON' appears in glowing blue font."
+      },
+      {
+        "start_time": "00:26:147",
+        "end_time": "00:44:417",
+        "description": "The components for the project are laid out on a striped surface: Raspberry Pi Pico, 16x2 LCD display, DHT11 sensor module, a small white breadboard, and several male-to-male and male-to-female jumper wires. A hand holding a small screwdriver points to the different components."
+      },
+      {
+        "start_time": "00:44:718",
+        "end_time": "01:29:188",
+        "description": "A screen recording of the Fritzing software is shown. Wires are virtually connected between the Raspberry Pi Pico (on a breadboard), the 16x2 LCD, and the DHT11 sensor module, demonstrating the circuit diagram."
+      },
+      {
+        "start_time": "01:29:697",
+        "end_time": "01:39:817",
+        "description": "Close-up of the assembled circuit on the breadboard, identical to the initial setup but with the LCD screen blank."
+      },
+      {
+        "start_time": "01:40:64",
+        "end_time": "02:52:904",
+        "description": "Screen recording of the Thonny IDE. Code files (dht.py, lcd_api.py, pico_i2c_lcd.py, main.py) are shown. The user scrolls through the code in `main.py`, highlighting specific sections related to I2C setup, sensor reading (temperature 't', humidity 'h'), and printing values to the LCD."
+      },
+      {
+        "start_time": "02:53:162",
+        "end_time": "03:25:532",
+        "description": "The assembled circuit is shown again, now powered on. The LCD displays updating temperature (around 33.1 C) and humidity (54.0 %) readings. The red LED on the DHT11 module is lit."
+      },
+      {
+        "start_time": "03:25:742",
+        "end_time": "04:32:262",
+        "description": "A smartphone is brought into view next to the circuit. The user opens the Google app and searches for \"today's temperature in my location\". The Google weather result shows 34°C for Howrah, West Bengal. This is compared to the 33.1°C - 33.3°C reading shown on the project's LCD screen."
+      },
+      {
+        "start_time": "04:32:706",
+        "end_time": "04:37:846",
+        "description": "Animated outro screen with a blue and red abstract shape containing the text 'THANKS FOR WATCHING'. The background is white with light pink shapes and scattered dots."
+      }
+    ]
+  }

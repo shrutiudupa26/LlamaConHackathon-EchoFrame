@@ -1,0 +1,317 @@
+{
+    "URL": "https://www.youtube.com/watch?v=IyQzCoiwE5E",
+    "transcription": [
+      {
+        "start_time": "00:00:42",
+        "end_time": "00:00:48",
+        "text": "Hi, welcome to Donsky Tech. In this video, I am going to show you how you can interface with a DHT 22 temperature and humidity sensor with your Raspberry Pi."
+      },
+      {
+        "start_time": "00:00:48",
+        "end_time": "00:01:03",
+        "text": "We will use Python programming language in doing the code for this project. So I have here my DHT 22 sensor module and my Raspberry Pi 0W together with the breakout board and some connecting wires."
+      },
+      {
+        "start_time": "00:01:03",
+        "end_time": "00:01:24",
+        "text": "What I'm going to show you is that I'll be using the DHT 22 sensor module which already contains the pull-up resistor and some filter capacitor so that there there will be no need for us to connect any external component in connecting with our DHT 22 module."
+      },
+      {
+        "start_time": "00:01:24",
+        "end_time": "00:01:40",
+        "text": "So, the DHT 22 module outputs the temperature and the humidity in a single data line and it only has three pins. One is for the power pin for the ground and VCC."
+      },
+      {
+        "start_time": "00:01:40",
+        "end_time": "00:01:47",
+        "text": "And the other pin is the data line which is the digital line where in the temperature and the humidity goes out."
+      },
+      {
+        "start_time": "00:01:47",
+        "end_time": "00:02:07",
+        "text": "For the wiring and schematic, all you need to do is just to connect the three pins of your DHT 22 module and just connect the ground and the VCC pin to the ground and the 3.3 volts of our Raspberry Pi zero and connect the data pin to the any of the digital pins of the Raspberry Pi."
+      },
+      {
+        "start_time": "00:02:07",
+        "end_time": "00:02:23",
+        "text": "I'm using the Raspberry Pi 0W here in my project, but you can use any other Raspberry Pi variant such as the Raspberry Pi 4B or the latest which is the Raspberry Pi 02W."
+      },
+      {
+        "start_time": "00:02:24",
+        "end_time": "00:02:25",
+        "text": "So,"
+      },
+      {
+        "start_time": "00:02:25",
+        "end_time": "00:02:37",
+        "text": "Let's go now into the code. So, the code for this project, by the way, is available in my GitHub repository, which I will post in the description of this video."
+      },
+      {
+        "start_time": "00:02:37",
+        "end_time": "00:03:19",
+        "text": "And the way to connect with the DHT 22 sensor is by using the library. So, when you try to Google for the library that you can use, when connecting with the Raspberry Pi, there's actually two libraries that you would see. One is the Adafruit Circuit Python DHT library. So, by the way, this is the latest project that we can use or the latest library that we can use."
+      },
+      {
+        "start_time": "00:03:19",
+        "end_time": "00:03:38",
+        "text": "And some of the sites when you Google, you'll find them using the old library, which is the Adafruit Python DHT. The only problem with this library is that this is already deprecated."
+      },
+      {
+        "start_time": "00:03:38",
+        "end_time": "00:03:50",
+        "text": "So, if ever there is some issues with your readings, then it will be hard to use this library since the support is already ended for this library."
+      },
+      {
+        "start_time": "00:03:50",
+        "end_time": "00:04:00",
+        "text": "But in our case in here, I'm going to show you how you you can use both libraries so that you can decide for yourself which libraries that you're going to use."
+      },
+      {
+        "start_time": "00:04:00",
+        "end_time": "00:04:19",
+        "text": "So, the steps that I have outlined here in my companion write up is already detailed. So, you just need to follow the steps in here and just take a look at how the library is being installed."
+      },
+      {
+        "start_time": "00:04:19",
+        "end_time": "00:04:51",
+        "text": "So, I have here the two libraries, which is the Adafruit Circuit Python DHT. And the other one is the library called the Adafruit DHT. So, the only concern that I have with the Adafruit Circuit Python is that the installation is a bit involved and you need to install the Circuit Python library for the Adafruit project."
+      },
+      {
+        "start_time": "00:04:51",
+        "end_time": "00:05:07",
+        "text": "If you're not familiar with the Circuit Python, it's the microPython implementation of the Adafruit Industries. So, once you have installed the library by following the steps in here, then you can now start connecting with your Raspberry Pi."
+      },
+      {
+        "start_time": "00:05:07",
+        "end_time": "00:05:25",
+        "text": "So, this is my project right now. And if I try to list the project, you would see that there's two file actually. One is name new, and the other one is name old."
+      },
+      {
+        "start_time": "00:05:25",
+        "end_time": "00:05:38",
+        "text": "So, the new uh Python file uses the new Circuit Python library. And the old is using the deprecated library which is the Adafruit Python DHT library."
+      },
+      {
+        "start_time": "00:05:38",
+        "end_time": "00:05:43",
+        "text": "So, but for now, let's try to execute these two these two files so that we would know what the output is."
+      },
+      {
+        "start_time": "00:05:43",
+        "end_time": "00:05:49",
+        "text": "So, to execute the project, just type the Python, and then the new."
+      },
+      {
+        "start_time": "00:05:53",
+        "end_time": "00:06:04",
+        "text": "And as you can see, we was able to retrieve the values of the temperature and the humidity. When you see this message, which is the pull buffer, just ignore this one."
+      },
+      {
+        "start_time": "00:06:04",
+        "end_time": "00:06:13",
+        "text": "It just means that the library was not able to read the sensor readings. So, you can uh just continue with the code."
+      },
+      {
+        "start_time": "00:06:13",
+        "end_time": "00:06:18",
+        "text": "And as you can see, the temperature and humidity is being returned. If we try to hold the sensor,"
+      },
+      {
+        "start_time": "00:06:22",
+        "end_time": "00:06:33",
+        "text": "then you would see that the the humidity started going up right now. So, which means that the sensor was able to detect the change in the humidity."
+      },
+      {
+        "start_time": "00:06:33",
+        "end_time": "00:06:39",
+        "text": "So, that's all for the using the new DHT simple."
+      },
+      {
+        "start_time": "00:06:39",
+        "end_time": "00:06:49",
+        "text": "So, if we check what the code is for this new DHT simple is, it's actually just really simple."
+      },
+      {
+        "start_time": "00:06:49",
+        "end_time": "00:06:55",
+        "text": "All you need to do is just to import the necessary packages or library."
+      },
+      {
+        "start_time": "00:06:55",
+        "end_time": "00:07:14",
+        "text": "And then just create the DHT device, which is the DHT 22. By the way, this library is applicable also for any DHT 11 variant also. So, we just need to pass in the board number or the GPIO pin number, which is in my case is GPIO 18."
+      },
+      {
+        "start_time": "00:07:14",
+        "end_time": "00:07:33",
+        "text": "And it just continually loops and after looping, it just reads the temperature by passing in by calling the DHT device that temperature, and there's just some conversion between the Celsius and the Fahrenheit."
+      },
+      {
+        "start_time": "00:07:33",
+        "end_time": "00:07:41",
+        "text": "And the humidity is just being called by calling the DHT device that humidity. The error that you have seen earlier was"
+      },
+      {
+        "start_time": "00:07:41",
+        "end_time": "00:07:55",
+        "text": "caused by some runtime error here. So, it just prints the error and then just continue with the looping. So, as per the DHT library, the errors happens fairly often because it's hard to read this sensor."
+      },
+      {
+        "start_time": "00:07:55",
+        "end_time": "00:08:01",
+        "text": "So, just ignore it and just continue with the code. So that's is that's all for how you can read the"
+      },
+      {
+        "start_time": "00:08:01",
+        "end_time": "00:08:07",
+        "text": "DHT 22 sensor using this library. Next, I'm going to show you the old"
+      },
+      {
+        "start_time": "00:08:07",
+        "end_time": "00:08:14",
+        "text": "library, which is the this one. So let's try running it first by running Python old."
+      },
+      {
+        "start_time": "00:08:19",
+        "end_time": "00:08:27",
+        "text": "And as you can see, the library was able to give back also the value of the temperature and the humidity."
+      },
+      {
+        "start_time": "00:08:27",
+        "end_time": "00:08:31",
+        "text": "So, if we try to check the code,"
+      },
+      {
+        "start_time": "00:08:37",
+        "end_time": "00:08:47",
+        "text": "So, the only difference here is that it's importing the Adafruit_DHT with the first letter in capitalized form. And then"
+      },
+      {
+        "start_time": "00:08:47",
+        "end_time": "00:08:55",
+        "text": "the sensor value is dictated as DHT22. So you can replace it with the DHT11."
+      },
+      {
+        "start_time": "00:08:55",
+        "end_time": "00:09:08",
+        "text": "And then you just need to define the pins and then after defining the pins, there is a complete loop here. Just uh if you check the method that"
+      },
+      {
+        "start_time": "00:09:08",
+        "end_time": "00:09:23",
+        "text": "is needed, you see that it is calling the read and retry which is the sensor and then which you can call by passing the sensor and the pin."
+      },
+      {
+        "start_time": "00:09:23",
+        "end_time": "00:09:37",
+        "text": "And as you can see the reason why it is read and retry such that if there's a failure then it will wait for two seconds before trying to read again the DHT22 sensor."
+      },
+      {
+        "start_time": "00:09:37",
+        "end_time": "00:09:44",
+        "text": "And then after the values are retrieved then it just prints the temperature and the humidity."
+      },
+      {
+        "start_time": "00:09:44",
+        "end_time": "00:09:55",
+        "text": "So basically that's really how easy it is to read your DHT22 sensor using the other fruit library and the Python programming language."
+      },
+      {
+        "start_time": "00:09:55",
+        "end_time": "00:09:58",
+        "text": "So, that's it. Hope you learn something. Happy exploring."
+      }
+    ],
+    "visual_description": [
+      {
+        "start_time": "00:00:00",
+        "end_time": "00:00:17",
+        "description": "Title slide with a dark blue background and abstract teal/orange light wave patterns made of dots. Text reads: \"Raspberry Pi - Interface with a DHT22 sensor\". Website URL \"www.donskytech.com\" is at the bottom left."
+      },
+      {
+        "start_time": "00:00:17",
+        "end_time": "00:00:28",
+        "description": "Close-up shot of electronic components on a green gridded cutting mat. A Raspberry Pi Zero W is connected via a GPIO breakout board to a white breadboard. A small red board with a white DHT22 sensor module is plugged into the breadboard. White jumper wires connect the breakout board to the DHT22 module. A finger points to the DHT22 sensor."
+      },
+      {
+        "start_time": "00:00:28",
+        "end_time": "00:01:11",
+        "description": "Slide titled \"What is DHT22 Module?\" appears. It shows an image of the red DHT22 module board. Labels point to the pins: GND (Ground), VCC (Power), DATA. An arrow points to the white sensor component. A purple box highlights the small surface-mount components on the back, labeled \"Pull Up Resistor/ Filter Capacitor\"."
+      },
+      {
+        "start_time": "00:01:11",
+        "end_time": "00:01:48",
+        "description": "Slide titled \"Wiring/Schematic\" appears. It shows an image of a Raspberry Pi Zero W board next to the DHT22 module. Yellow lines indicate the wiring connections: Pi GND to DHT22 GND, Pi 3.3V to DHT22 VCC, Pi GPIO18 to DHT22 DAT. A table summarizes these connections: Rpi Zero W | DHT22 ---|--- GND | GND | 3.3 | VCC | GPIO18 | DAT."
+      },
+      {
+        "start_time": "00:01:48",
+        "end_time": "00:01:51",
+        "description": "Transition back to the \"Wiring/Schematic\" slide view within a presentation software interface (likely Google Slides)."
+      },
+      {
+        "start_time": "00:01:51",
+        "end_time": "00:02:19",
+        "description": "Web browser view showing a GitHub repository page: donskytech / raspberrypi-projects / tree / master / dht22. Two Python files are listed: `new_dht_simpletest.py` and `old_dht_simpletest.py`."
+      },
+      {
+        "start_time": "00:02:19",
+        "end_time": "00:02:32",
+        "description": "Web browser view showing another GitHub repository: adafruit / Adafruit_CircuitPython_DHT. The code for `dht_simpletest.py` is displayed."
+      },
+      {
+        "start_time": "00:02:32",
+        "end_time": "00:03:05",
+        "description": "Web browser view showing a third GitHub repository: adafruit / Adafruit_Python_DHT. A yellow banner indicates \"This repository has been archived...\". The README section is visible, stating \"DEPRECATED LIBRARY Adafruit Python DHT Sensor Library\"."
+      },
+      {
+        "start_time": "00:03:05",
+        "end_time": "00:04:01",
+        "description": "Web browser view showing a webpage on donskytech.com titled \"How to interface Raspberry Pi with DHT22?\". The page scrolls down, showing sections like \"Update your Raspberry Pi\", \"Choose your project root directory\", and command blocks for installation, specifically highlighting the steps for installing CircuitPython libraries."
+      },
+      {
+        "start_time": "00:04:01",
+        "end_time": "00:05:09",
+        "description": "Terminal window with a black background and green/white text. The prompt shows `pi@raspberrypi-zero-w:~/Projects/dht22_test $`. The `ls -l` command is run, showing the `new_dht_simpletest.py` and `old_dht_simpletest.py` files. The command `python new_dht_simpletest.py` is run. Output lines appear showing Temperature (in F and C) and Humidity readings, occasionally interspersed with the message \"A full buffer was not returned. Try again.\"."
+      },
+      {
+        "start_time": "00:05:09",
+        "end_time": "00:05:23",
+        "description": "Split screen: Left side shows the terminal output from the previous segment. Right side shows the physical hardware setup again, with a hand holding the white DHT22 sensor between thumb and forefinger. The humidity reading on the terminal noticeably increases."
+      },
+      {
+        "start_time": "00:05:23",
+        "end_time": "00:05:30",
+        "description": "Full terminal window view again. Ctrl+C is pressed to stop the script execution, showing a KeyboardInterrupt traceback."
+      },
+      {
+        "start_time": "00:05:30",
+        "end_time": "00:06:51",
+        "description": "Terminal window showing the `nano new_dht_simpletest.py` command, opening the Python script in the nano text editor. The code is displayed, highlighting imports (`time`, `board`, `adafruit_dht`), device initialization (`dhtDevice = adafruit_dht.DHT22(board.D18)`), the `while True` loop, the `try...except RuntimeError` block for reading temperature and humidity (`dhtDevice.temperature`, `dhtDevice.humidity`), and printing the values."
+      },
+      {
+        "start_time": "00:06:51",
+        "end_time": "00:07:15",
+        "description": "Terminal window returns to the command prompt after exiting nano. The `ls -l` command is run again. The command `python old_dht_simpletest.py` is executed. Output lines appear showing Temperature (in C) and Humidity readings."
+      },
+      {
+        "start_time": "00:07:15",
+        "end_time": "00:07:19",
+        "description": "Ctrl+C is pressed to stop the script, showing a KeyboardInterrupt traceback."
+      },
+      {
+        "start_time": "00:07:19",
+        "end_time": "00:08:22",
+        "description": "Terminal window showing the `nano old_dht_simpletest.py` command, opening the old Python script. The code is displayed, highlighting the import (`Adafruit_DHT`), sensor definition (`sensor = Adafruit_DHT.DHT22`), pin definition (`pin = 18`), the `while True` loop, the call to read data (`humidity, temperature = Adafruit_DHT.read_retry(sensor, pin)`), checking if readings are valid, and printing the values or an error message."
+      },
+      {
+        "start_time": "00:08:22",
+        "end_time": "00:08:36",
+        "description": "Terminal window returns to the command prompt after exiting nano."
+      },
+      {
+        "start_time": "00:08:36",
+        "end_time": "00:08:46",
+        "description": "Quick cuts showing unrelated electronics projects: 1) A Raspberry Pi Zero connected to a long blue PCB and a breadboard with another breakout board. 2) Similar setup but with a large LED matrix displaying scrolling red text (\"ek...\", \"don\", \"donske\")."
+      }
+    ]
+  }
