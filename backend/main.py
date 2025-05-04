@@ -17,6 +17,8 @@ from create_tavus_conversations import create_tavus_conversation
 import requests
 from pydub import AudioSegment
 from groq import Groq
+from fastapi import Body
+
 
 
 
@@ -55,6 +57,8 @@ class TranslationRequest(BaseModel):
 
 class ConversationRequest(BaseModel):
     person: str
+    language: str
+class Translations(BaseModel):
     language: str
 
 # ====== ROUTES ======
@@ -147,9 +151,10 @@ def generate_podcast():
         return JSONResponse(content={"message": "Podcast created", "result": result})
     except Exception as e:
         return JSONResponse(status_code=500, content={"error": str(e)})
+
 @app.post("/test-translations")
-def run_translation():
-    result = test_translations()
+def run_translation(request: Translations = Body(...)):
+    result = test_translations(request.language)
     return JSONResponse(content=result)
 
 @app.post("/generate-audio")

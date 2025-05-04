@@ -1,47 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-export default function ResponseViewer({ response: initialResponse }) {
+export default function ResponseViewer() {
   const [language, setLanguage] = useState('en');
-  const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState(initialResponse);
+  const [englishText, setEnglishText] = useState('');
+  const [translatedText, setTranslatedText] = useState('');
+  const [loadingAudio, setLoadingAudio] = useState(false);
+
+  // Fetch English podcast text on mount
+  useEffect(() => {
+    const fetchEnglishText = async () => {
+      try {
+        const res = await fetch('http://localhost:8000/podcast-text?lang=en');
+        if (!res.ok) throw new Error('Failed to fetch English podcast text');
+        const text = await res.text();
+        setEnglishText(text);
+      } catch (err) {
+        console.error(err);
+        setEnglishText('Error loading English content.');
+      }
+    };
+    fetchEnglishText();
+  }, []);
 
   const handleLanguageChange = async (e) => {
     const selectedLang = e.target.value;
     setLanguage(selectedLang);
-    
+
+    if (selectedLang === 'en') {
+      setTranslatedText('');
+      return;
+    }
+
     try {
-      const res = await fetch(`http://localhost:8000/podcast-text?lang=${selectedLang}`);
-      if (!res.ok) {
-        throw new Error('Failed to fetch podcast text');
-      }
+      const res = await fetch('http://localhost:8000/test-translations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ language: selectedLang }),
+      });
+
+      if (!res.ok) throw new Error('Failed to fetch translation');
       const text = await res.text();
-      setResponse(text);
-    } catch (error) {
-      console.error('Error fetching podcast text:', error);
-      setResponse('Failed to load podcast text.');
+      setTranslatedText(text);
+    } catch (err) {
+      console.error(err);
+      setTranslatedText('Error loading translated content.');
     }
   };
 
   const handlePlayClick = async () => {
-    setLoading(true);
+    setLoadingAudio(true);
     try {
-      const res = await fetch('http://localhost:8000/generate_speech', {
-        method: 'POST',
-      });
-
-      if (!res.ok) {
-        throw new Error('Failed to trigger speech generation');
-      }
+      const res = await fetch('http://localhost:8000/generate_speech', { method: 'POST' });
+      if (!res.ok) throw new Error('Failed to trigger speech generation');
 
       const blob = await res.blob();
       const audioUrl = URL.createObjectURL(blob);
-      const audio = new Audio(audioUrl);
-      audio.play();
-    } catch (error) {
-      console.error('Error:', error);
+      new Audio(audioUrl).play();
+    } catch (err) {
+      console.error(err);
       alert('Failed to play audio');
     } finally {
-      setLoading(false);
+      setLoadingAudio(false);
     }
   };
 
@@ -62,19 +81,20 @@ export default function ResponseViewer({ response: initialResponse }) {
           <option value="zh">Chinese</option>
         </select>
 
-        <button onClick={handlePlayClick} disabled={loading} className="play-button">
-          {loading ? 'Playing...' : 'Play'}
+        <button onClick={handlePlayClick} disabled={loadingAudio} className="play-button">
+          {loadingAudio ? 'Playing...' : 'Play'}
         </button>
       </div>
 
-      {response ? (
-        <pre className="response-content">{response}</pre>
-      ) : (
-        <div className="response-placeholder">
-          <svg xmlns="http://www.w3.org/2000/svg" className="response-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z" />
-          </svg>
-          <p>Your answer will appear here</p>
+      <div className="language-block">
+        <h4>English</h4>
+        <pre className="response-content">{englishText}</pre>
+      </div>
+
+      {language !== 'en' && (
+        <div className="language-block">
+          <h4>Translated ({language})</h4>
+          <pre className="response-content">{translatedText}</pre>
         </div>
       )}
     </div>

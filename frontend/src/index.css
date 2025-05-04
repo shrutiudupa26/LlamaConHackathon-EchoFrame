@@ -75,9 +75,18 @@ button:focus-visible {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .response-content {
-  max-height: 300px; /* Adjust based on your needs */
-  overflow-y: auto;  /* Enables vertical scrolling */
-  white-space: pre-wrap; /* Wraps the text in case it's too long */
-  word-wrap: break-word; /* Breaks long words for better readability */
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #f8f8f8;
+  padding: 1em;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  margin-bottom: 1em;
+}
+
+.language-block {
+  margin-top: 1em;
 }

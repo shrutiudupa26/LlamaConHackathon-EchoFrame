@@ -44,7 +44,7 @@ function App() {
             <h2>Ask a Question</h2>
           </div>
           <QuestionBox onAnswer={setResponse} />
-          <ResponseView response={response} />
+
         </div>
 
         <div className="card">
