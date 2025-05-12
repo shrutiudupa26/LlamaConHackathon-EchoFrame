@@ -1,6 +1,6 @@
 # EchoFrame: AI-Powered Video Learning Assistant
 
-> 🏆 Initially developed during Meta's [LlamaCon Hackathon 2025](https://www.linkedin.com/posts/meta-for-developers_llamaconhackathon25-activity-7325260127798788096-TqPZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAABdIhZwBKgBEN52VAp7xTSJE6_nIFC-OCWU) as an innovative solution for video-based learning and content analysis. The project has since evolved with additional features and improvements to enhance user experience and functionality.
+> Initially developed during Meta's [LlamaCon Hackathon 2025](https://www.linkedin.com/posts/meta-for-developers_llamaconhackathon25-activity-7325260127798788096-TqPZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAABdIhZwBKgBEN52VAp7xTSJE6_nIFC-OCWU) as an innovative solution for video-based learning and content analysis. The project has since evolved with additional features and improvements to enhance user experience and functionality.
 
 EchoFrame is an innovative application that revolutionizes how we learn from video content. By leveraging Meta's Llama 4 models and advanced AI technologies, EchoFrame helps users efficiently extract knowledge from multiple videos without the need to watch them entirely.
 
