@@ -1,9 +1,19 @@
 from pathlib import Path
+from dotenv import load_dotenv
+import os
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+GROQ_MODEL = os.getenv("GROQ_MODEL", "meta-llama/llama-4-maverick-17b-128e-instruct")
+GROQ_TEMPERATURE = float(os.getenv("GROQ_TEMPERATURE", "0.2"))
+GROQ_MAX_TOKENS = int(os.getenv("GROQ_MAX_TOKENS", "4000"))
 from groq import Groq
 from youtube_transcript_api import YouTubeTranscriptApi
-from config import GROQ_API_KEY, GROQ_MODEL, GROQ_TEMPERATURE, GROQ_MAX_TOKENS
 import json
 from typing import List, Dict, Optional
+import re
+import time
+from collections import deque
+import requests
 
 def setup_groq_client():
     """Setup Groq client with API key."""
@@ -23,12 +33,14 @@ def setup_directories():
     Path("data/cleaned").mkdir(parents=True, exist_ok=True)
 
 def extract_video_id(video_url: str) -> Optional[str]:
-    """Extract video ID from different YouTube URL formats."""
+    """Extract video ID from different YouTube URL formats, including shorts."""
     try:
         if "youtu.be/" in video_url:
             return video_url.split("youtu.be/")[-1].split("?")[0]
         elif "watch?v=" in video_url:
             return video_url.split("watch?v=")[-1].split("&")[0]
+        elif "/shorts/" in video_url:
+            return video_url.split("/shorts/")[-1].split("?")[0].split("&")[0]
         else:
             print(f"Invalid YouTube URL format: {video_url}")
             return None
@@ -75,16 +87,28 @@ def extract_transcript(video_url: str) -> Optional[List[Dict]]:
 def generate_visual_description(transcript_data: List[Dict], client) -> Optional[List[Dict]]:
     """Generate visual descriptions for the video using Groq."""
     try:
-        # Process the transcript in exactly 4 chunks total
+        # Token usage tracker
+        token_window = deque()
+        TOKEN_LIMIT_PER_MIN = 280000
+        MAX_TOKENS_PER_REQUEST = 8192
+        CONTEXT_WINDOW = 128000  # Llama 4 Maverick context window
+        # Estimate tokens per transcript segment and prompt overhead
+        tokens_per_segment = 40  # Adjust as needed
+        prompt_overhead = 1000   # Estimated tokens for prompt instructions
+        # Calculate how many segments fit in one request
+        max_input_tokens = CONTEXT_WINDOW - MAX_TOKENS_PER_REQUEST - prompt_overhead
+        segments_per_chunk = max_input_tokens // tokens_per_segment
+        segments_per_chunk = min(segments_per_chunk, 50)  # Limit to 50 segments per chunk
         total_segments = len(transcript_data)
-        chunk_size = (total_segments + 3) // 4  # Round up to ensure we cover all segments
+        num_chunks = max(1, (total_segments + segments_per_chunk - 1) // segments_per_chunk)
+        chunk_size = (total_segments + num_chunks - 1) // num_chunks
+        print(f"Dynamic chunking: {num_chunks} chunks, {chunk_size} segments per chunk (estimated)")
         all_descriptions = []
         
         for i in range(0, total_segments, chunk_size):
             chunk = transcript_data[i:i+chunk_size]
-            print(f"\nProcessing chunk {i//chunk_size + 1} of 4")
-            
-            # Prepare the prompt for visual description generation
+            print(f"\nProcessing chunk {i//chunk_size + 1} of {num_chunks}")
+            # Estimate tokens for this request (input + output)
             prompt = f"""
             You are an AI assistant analyzing a video. Based on the following transcript segments, 
             generate detailed visual descriptions for each segment. Focus on what a person would see 
@@ -113,6 +137,19 @@ def generate_visual_description(transcript_data: List[Dict], client) -> Optional
             7. Do not include any explanatory text before or after the JSON
             8. Make sure the JSON is complete and properly closed with a closing bracket
             """
+            estimated_tokens = int(len(prompt) / 2) + MAX_TOKENS_PER_REQUEST
+            # Throttle if needed
+            now = time.time()
+            # Remove tokens older than 60 seconds
+            while token_window and now - token_window[0][0] > 60:
+                token_window.popleft()
+            used_tokens = sum(t[1] for t in token_window)
+            if used_tokens + estimated_tokens > TOKEN_LIMIT_PER_MIN:
+                wait_time = 60 - (now - token_window[0][0])
+                print(f"[Token Limit] Waiting {wait_time:.1f} seconds to stay under 280,000 tokens/minute...")
+                time.sleep(wait_time)
+            # After waiting, record this request
+            token_window.append((time.time(), estimated_tokens))
             
             print("Sending prompt to Groq API...")
             try:
@@ -126,7 +163,7 @@ def generate_visual_description(transcript_data: List[Dict], client) -> Optional
                     ],
                     model=GROQ_MODEL,
                     temperature=GROQ_TEMPERATURE,
-                    max_tokens=4000
+                    max_tokens=MAX_TOKENS_PER_REQUEST
                 )
             except Exception as e:
                 print(f"Groq API Error: {e}")
@@ -145,7 +182,11 @@ def generate_visual_description(transcript_data: List[Dict], client) -> Optional
             
             # Clean the response to ensure it's valid JSON
             response_content = response_content.replace("```json", "").replace("```", "").strip()
-            
+
+            # Fix missing commas between fields in objects
+            response_content = re.sub(r'("start_time":\s*"[^"]+")\s+("end_time":)', r'\1, \2', response_content)
+            response_content = re.sub(r'("end_time":\s*"[^"]+")\s+("description":)', r'\1, \2', response_content)
+
             # Ensure the response is properly closed
             if not response_content.endswith(']'):
                 print("Warning: Response does not end with closing bracket")
@@ -195,6 +236,10 @@ def generate_visual_description(transcript_data: List[Dict], client) -> Optional
         if len(all_descriptions) == len(transcript_data):
             return all_descriptions
         else:
+            diff = abs(len(all_descriptions) - len(transcript_data))
+            if diff <= 3:
+                print(f"Warning: {diff} segments missing/extra. Proceeding with available descriptions.")
+                return all_descriptions
             print(f"\nError: Total number of descriptions ({len(all_descriptions)}) does not match total number of transcript segments ({len(transcript_data)})")
             return None
         
@@ -204,12 +249,29 @@ def generate_visual_description(transcript_data: List[Dict], client) -> Optional
         traceback.print_exc()
         return None
 
+def get_video_title(video_id: str) -> Optional[str]:
+    """Fetch the title of a YouTube video using the oEmbed endpoint."""
+    try:
+        oembed_url = f"https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v={video_id}&format=json"
+        response = requests.get(oembed_url)
+        if response.status_code == 200:
+            return response.json()['title']
+        return None
+    except Exception as e:
+        print(f"Error fetching video title: {e}")
+        return None
+
 def process_single_video(video_url: str, client) -> Optional[Dict]:
     """Process a single YouTube video and return the analysis data."""
     try:
         video_id = extract_video_id(video_url)
         if not video_id:
             return None
+            
+        # Get video title
+        video_title = get_video_title(video_id)
+        if not video_title:
+            video_title = "Untitled Video"
             
         # Extract transcript
         transcript_data = extract_transcript(video_url)
@@ -224,6 +286,7 @@ def process_single_video(video_url: str, client) -> Optional[Dict]:
         # Combine all data
         video_analysis = {
             "video_id": video_id,
+            "title": video_title,
             "url": video_url,
             "transcription": transcript_data,
             "visual_description": visual_descriptions

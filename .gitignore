@@ -21,7 +21,7 @@ wheels/
 .installed.cfg
 *.egg
 venv/
-.env
+.env  # Commented out to make .env visible in Cursor
 
 # Node.js
 node_modules/
@@ -50,3 +50,4 @@ out/
 backend/audio_output/
 backend/podcasts/*.txt
 backend/speech.wav
+backend/data/

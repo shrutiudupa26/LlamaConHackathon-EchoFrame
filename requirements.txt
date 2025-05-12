@@ -1,13 +1,30 @@
 # Web Framework
-fastapi
-uvicorn
+fastapi==0.109.2
+uvicorn==0.27.1
 
 # Utilities
 python-dotenv==1.0.0
-groq
-sounddevice
-soundfile
-pydub
-pydantic
-python-multipart
-requests
+groq==0.3.2
+sounddevice==0.4.6
+soundfile==0.12.1
+pydantic==2.6.1
+python-multipart==0.0.9
+requests==2.31.0
+PyAudio==0.2.14
+youtube_transcript_api==0.6.2
+
+# Video Processing
+pytube==15.0.0
+moviepy==1.0.3
+
+# AI and Language Processing
+openai==1.12.0
+langchain==0.1.9
+langchain-community==0.0.24
+langchain-core==0.1.27
+
+# Audio Processing
+gTTS==2.5.1
+
+# API Documentation
+pyyaml==6.0.1
