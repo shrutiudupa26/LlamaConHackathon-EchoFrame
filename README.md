@@ -37,7 +37,7 @@ The application leverages several cutting-edge technologies:
 - **Llama 4 Maverick**: Core model for summarization and conversation
 - **Groq**: Fast inference engine
 - **Tavus**: Avatar-based interaction
-- **Synthetic Data Toolkit**: Visual cue extraction
+- **Meta's Synthetic Data Toolkit**: Transcriptions and Visual cue extraction from videos
 - **FastAPI**: Backend API framework
 - **React**: Frontend framework
 
