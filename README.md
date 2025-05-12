@@ -31,7 +31,7 @@ EchoFrame is an innovative application that revolutionizes how we learn from vid
 
 ## Architecture
 
-![EchoFrame Architecture](images/EchoFrame%20Flow%20Diagram.png)
+![EchoFrame Architecture](images/EchoFrame%20Flow%20Diagram.jpg)
 
 The application leverages several cutting-edge technologies:
 - **Llama 4 Maverick**: Core model for summarization and conversation
@@ -41,7 +41,7 @@ The application leverages several cutting-edge technologies:
 - **FastAPI**: Backend API framework
 - **React**: Frontend framework
 
-## 🚀 Installation
+## Installation
 
 1. Clone the repository:
 ```bash
@@ -74,7 +74,7 @@ TAVUS_PERSONA_ID=created_persona_id
 TAVUS_REPLICA_ID=replica_id
 ```
 
-## 🏃‍♂️ Running the Application
+## Running the Application
 
 1. Start the backend server:
 ```bash
@@ -106,7 +106,7 @@ EchoFrame leverages Llama 4's advanced capabilities:
 - **Multimodality**: Extracts information from both video frames and audio
 - **Multilingual Support**: Handles content in 200+ languages
 
-## 📄 License
+## License
 
 EchoFrame is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
 
